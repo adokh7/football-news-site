@@ -1,0 +1,4 @@
+baseURL = 'https://example.com/'
+languageCode = 'en-us'
+title = 'Football News'
+theme = 'ananke'
