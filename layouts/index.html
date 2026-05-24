@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ .Title }}</title>
+</head>
+<body>
+    <h1>{{ .Title }}</h1>
+    <h2>Latest News:</h2>
+    <ul>
+        {{ range (where .Site.RegularPages "Section" "posts") }}
+        <li>
+            <strong>{{ .Title }}</strong> - <small>{{ .Date.Format "2006-01-02" }}</small>
+            <p>{{ .Content }}</p>
+        </li>
+        {{ end }}
+    </ul>
+</body>
+</html>
