@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Pitch | Global Football News &amp; Live Match Centre</title>
+  <meta name="description"
+    content="Your premier destination for global football news, live match scores, transfer updates, Champions League analysis, and World Cup 2026 coverage.">
+  <meta name="keywords"
+    content="football news, soccer news, live scores, Premier League, Champions League, World Cup 2026, transfer news, La Liga, Bundesliga, Serie A">
+  <meta name="author" content="The Pitch Editorial Team">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://thepitch.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Pitch | Global Football News &amp; Live Match Centre">
+  <meta property="og:description"
+    content="Premier global football news, live scores, transfer updates, and World Cup 2026 coverage.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Pitch | Global Football News">
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@type":"NewsMediaOrganization","name":"The Pitch","description":"Global football news and live match centre","url":"https://thepitch.com"}</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ['Oswald', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            gold: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: 'Inter', sans-serif
+    }
+
+    /* Pulse dot */
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      animation: pulse-anim 1.4s ease-in-out infinite
+    }
+
+    @keyframes pulse-anim {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .25;
+        transform: scale(.7)
+      }
+    }
+
+    /* Sidebar scrollbar */
+    .sidebar-scroll::-webkit-scrollbar {
+      width: 3px
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 4px
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+      background: #F59E0B
+    }
+
+    .sidebar-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: #475569 transparent
+    }
+
+    /* Breaking news marquee */
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%)
+      }
+
+      100% {
+        transform: translateX(-100%)
+      }
+    }
+
+    .animate-marquee {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite
+    }
+
+    .animate-marquee:hover {
+      animation-play-state: paused
+    }
+
+    /* Hero */
+    .hero-img-wrap {
+      overflow: hidden
+    }
+
+    .hero-img-wrap img {
+      transition: transform .6s ease
+    }
+
+    .hero-card:hover .hero-img-wrap img {
+      transform: scale(1.04)
+    }
+
+    .hero-gradient {
+      background: linear-gradient(to top, rgba(15, 23, 42, 1) 0%, rgba(15, 23, 42, .75) 45%, rgba(15, 23, 42, .05) 100%)
+    }
+
+    /* News cards */
+    .news-card {
+      transition: border-color .2s, box-shadow .2s
+    }
+
+    .news-card:hover {
+      border-color: rgba(251, 191, 36, .4);
+      box-shadow: 0 0 0 1px rgba(251, 191, 36, .12)
+    }
+
+    .news-card:hover .card-title {
+      color: #F59E0B
+    }
+
+    .card-title {
+      transition: color .2s
+    }
+
+    /* Countdown */
+    .cd-block {
+      background: rgba(15, 23, 42, .7);
+      border: 1px solid rgba(245, 158, 11, .25);
+      backdrop-filter: blur(4px)
+    }
+
+    /* Section bar */
+    .section-bar {
+      border-left: 3px solid #F59E0B;
+      padding-left: 10px
+    }
+
+    /* Shimmer skeleton */
+    .shimmer {
+      background: linear-gradient(90deg, #1e293b 25%, #273548 50%, #1e293b 75%);
+      background-size: 400% 100%;
+      animation: shimmer-anim 1.4s infinite
+    }
+
+    @keyframes shimmer-anim {
+      0% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    /* Refresh spin */
+    .spin-once {
+      animation: spin-once .7s linear
+    }
+
+    @keyframes spin-once {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* Match item hover */
+    .match-item {
+      transition: background .15s;
+      border-radius: .5rem
+    }
+
+    .match-item:hover {
+      background: rgba(51, 65, 85, .55)
+    }
+
+    /* WC gradient */
+    .wc-gradient {
+      background: linear-gradient(135deg, rgba(245, 158, 11, .13) 0%, rgba(251, 191, 36, .04) 100%)
+    }
+
+    /* Ad hatching */
+    .ad-hatch {
+      background: repeating-linear-gradient(45deg, rgba(30, 41, 59, .35), rgba(30, 41, 59, .35) 10px, rgba(15, 23, 42, .2) 10px, rgba(15, 23, 42, .2) 20px)
+    }
+  
+/* Custom Scrollbar for Sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.5); 
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3); 
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.8); /* Orange on hover */
+}
+</style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 antialiased min-h-screen">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
+
+    <!-- Top bar -->
+    <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+      <div class="flex items-center justify-between h-[60px]">
+
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2.5" aria-label="The Pitch Home">
+          <div class="w-8 h-8 rounded bg-amber-500 flex items-center justify-center shrink-0">
+            <svg viewBox="0 0 32 32" class="w-5 h-5" aria-hidden="true">
+              <circle cx="16" cy="16" r="14" fill="#0f172a" />
+              <path fill="white" d="M16 6 l2.5 7.5H26l-6.5 4.7 2.4 7.5L16 21l-5.9 4.7 2.4-7.5L6 13.5h7.5z" />
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <span class="font-oswald text-xl font-bold text-white tracking-widest uppercase block leading-none">The
+              Pitch</span>
+            <span class="text-[10px] text-slate-500 tracking-widest uppercase hidden sm:block">Global Football
+              Intelligence</span>
+          </div>
+        </a>
+
+        <!-- Nav -->
+        <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-6">
+          <a href="premier-league.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Premier League</a>
+          <a href="la-liga.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">La Liga</a>
+          <a href="bundesliga.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Bundesliga</a>
+          <a href="ligue-1.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Ligue 1</a>
+        <a href="serie-a.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Serie A</a>
+          <a href="champions-league.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Champions League</a>
+          <a href="transfers.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Transfers</a>
+          <a href="world-cup-2026.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">World Cup 2026</a>
+          <a href="analysis.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Analysis</a>
+        </nav>
+
+        <!-- Right controls -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5 bg-green-950/60 border border-green-800/50 rounded-full px-3 py-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-[11px] font-bold text-green-400 tracking-widest">LIVE</span>
+          </div>
+          <button class="md:hidden text-slate-400 hover:text-white p-1" aria-label="Open menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breaking ticker -->
+    <div class="bg-amber-500 h-7 flex items-center overflow-hidden">
+      <span
+        class="bg-slate-900 text-amber-400 text-[10px] font-black tracking-widest uppercase px-3 h-full flex items-center shrink-0 font-oswald border-r border-amber-600">Breaking</span>
+      <div class="flex-1 overflow-hidden">
+        <div class="animate-marquee text-slate-900 text-xs font-semibold">
+          <span class="mx-4">⚡️</span>
+          <a href="alaba-transfer.html" class="hover:underline font-medium">END OF AN ERA: David Alaba to exit Real Madrid</a> 
+          <span class="mx-4">•</span> 
+          <a href="guardiola-exit.html" class="hover:underline font-medium">THE SAUDI PURSUIT: Pep Guardiola's Agent Reveals Al-Nassr Contact</a> 
+          <span class="mx-4">•</span> 
+          <a href="enrique-psg-future.html" class="hover:underline font-medium">THE 2030 DEADLINE: Luis Enrique Maps Out PSG Retirement</a>
+          <span class="mx-4">•</span> 
+          <a href="nubel-transfer.html" class="hover:underline font-medium">GOALKEEPER MERRY-GO-ROUND: Bayern Munich to Cash In on Alexander Nübel</a>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ═══════════════════════ PAGE WRAPPER ═══════════════════════ -->
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- ╔═══════════════════════════════════════════╗
+         ║   LEFT COLUMN — News Blog  (8 / 12)      ║
+         ╚═══════════════════════════════════════════╝ -->
+      <main class="lg:col-span-8" aria-label="Football news blog">
+
+        <!-- Single h1 — visually hidden, present for SEO & a11y -->
+        <h1 class="sr-only">The Pitch — Global Football News and Live Match Centre</h1>
+
+        <!-- ── TOP STORIES HEADER ── -->
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-2xl font-black text-white uppercase tracking-tight font-oswald border-l-4 border-orange-500 pl-3">Top Stories</h2>
+          <a href="transfers.html" class="text-sm font-bold text-orange-500 hover:text-orange-400 transition">View All &rarr;</a>
+        </div>
+
+        <!-- ── HERO GRID (Bento Box) ── -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out h-auto lg:h-[550px]">
+          
+          <article class="lg:col-span-8 relative rounded-2xl overflow-hidden group shadow-2xl border border-slate-700 hover:border-orange-500 transition-colors h-[450px] lg:h-full">
+            <a href="dembele-ballon-dor.html" class="absolute inset-0">
+              <img src="./dembele.webp" alt="Ousmane Dembele Ballon d'Or" class="w-full h-full object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+            </a>
+            <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full">
+              <span class="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 shadow-lg">Breaking News</span>
+              <h3 class="text-3xl md:text-4xl font-black text-white mb-3 leading-tight font-oswald drop-shadow-lg">
+                <a href="dembele-ballon-dor.html" class="hover:underline decoration-orange-500 underline-offset-4">REDEMPTION COMPLETE: Ousmane Dembélé Crowned 2025 Ballon d'Or Winner</a>
+              </h3>
+              <p class="text-slate-200 text-sm md:text-base mb-4 line-clamp-2 max-w-2xl drop-shadow">The Paris Saint-Germain winger caps off a historic treble-winning season by becoming the first player from a French club to win the prestigious award since Jean-Pierre Papin.</p>
+              <div class="flex items-center text-xs text-slate-300 font-medium">
+                <span class="text-emerald-400 font-bold mr-4">Just now</span>
+                <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> 5 min read</span>
+              </div>
+            </div>
+          </article>
+
+          <div class="lg:col-span-4 flex flex-col gap-6 h-full">
+            
+            <article class="flex-1 bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-slate-500 transition-all group flex flex-col relative shadow-lg">
+              <a href="donnarumma-guardiola-tribute.html" class="block h-[45%] min-h-[110px] overflow-hidden relative">
+                <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-blue-400 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide z-10 border border-slate-700">Premier League</span>
+                <img src="./pepgelunggoal.webp" alt="Donnarumma Pep Guardiola Tribute" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105">
+              </a>
+              <div class="p-4 flex-1 flex flex-col justify-center">
+                <h3 class="text-md font-bold text-white leading-tight font-oswald mb-2 line-clamp-2">
+                  <a href="donnarumma-guardiola-tribute.html" class="hover:text-blue-400 transition-colors">"ONE OF THE GREATEST": Donnarumma Pays Emotional Tribute to Guardiola</a>
+                </h3>
+                <div class="text-[11px] text-slate-500 mt-auto pt-2 border-t border-slate-700/50">Just now • 3 min read</div>
+              </div>
+            </article>
+
+            <article class="flex-1 bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-slate-500 transition-all group flex flex-col relative shadow-lg">
+              <a href="spalletti-juventus-transfers.html" class="block h-[45%] min-h-[110px] overflow-hidden relative">
+                <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-orange-500 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide z-10 border border-slate-700">Transfers / Serie A</span>
+                <img src="./Luciano-Spalletti-s.webp" alt="Spalletti Juventus Transfers" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105">
+              </a>
+              <div class="p-4 flex-1 flex flex-col justify-center">
+                <h3 class="text-md font-bold text-white leading-tight font-oswald mb-2 line-clamp-2">
+                  <a href="spalletti-juventus-transfers.html" class="hover:text-orange-400 transition-colors">SPALLETTI'S BLUEPRINT: Juventus Boss Targets Alisson and Kim Min-jae</a>
+                </h3>
+                <div class="text-[11px] text-slate-500 mt-auto pt-2 border-t border-slate-700/50">Just now • 3 min read</div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ── WORLD CUP COUNTDOWN (sleek strip) ── -->
+        <section aria-labelledby="wc-heading" class="wc-gradient border border-amber-500/20 rounded-xl px-5 py-3 mt-8 mb-8 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <svg class="w-5 h-5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3h14l1 7H4L5 3zm0 7c0 5 3 8 8 8s8-3 8-8" />
+              </svg>
+              <div class="min-w-0">
+                <div class="flex items-baseline gap-2 flex-wrap">
+                  <span class="text-amber-400 text-[10px] font-black tracking-widest uppercase font-oswald">FIFA World Cup 2026</span>
+                  <span class="hidden sm:inline text-slate-600 text-xs">&middot;</span>
+                  <h2 id="wc-heading" class="text-sm font-semibold text-white font-oswald tracking-wide">USA &middot; Canada &middot; Mexico</h2>
+                </div>
+                <p class="text-slate-500 text-[11px] mt-0.5">Kick-off <strong class="text-slate-300">11 June 2026</strong> &middot; Estadio Azteca</p>
+              </div>
+            </div>
+            <div class="flex items-end gap-3 shrink-0 tabular-nums" id="countdown-widget" aria-live="polite" aria-atomic="true">
+              <div class="text-center">
+                <span id="cd-days" class="font-oswald text-2xl font-bold text-amber-400 leading-none">--</span>
+                <span class="block text-[9px] text-slate-500 uppercase tracking-wider mt-0.5">Days</span>
+              </div>
+              <span class="text-slate-700 text-xl pb-3">:</span>
+              <div class="text-center">
+                <span id="cd-hours" class="font-oswald text-2xl font-bold text-amber-400 leading-none">--</span>
+                <span class="block text-[9px] text-slate-500 uppercase tracking-wider mt-0.5">Hrs</span>
+              </div>
+              <span class="text-slate-700 text-xl pb-3">:</span>
+              <div class="text-center">
+                <span id="cd-mins" class="font-oswald text-2xl font-bold text-amber-400 leading-none">--</span>
+                <span class="block text-[9px] text-slate-500 uppercase tracking-wider mt-0.5">Mins</span>
+              </div>
+              <span class="text-slate-700 text-xl pb-3">:</span>
+              <div class="text-center">
+                <span id="cd-secs" class="font-oswald text-2xl font-bold text-amber-400 leading-none">--</span>
+                <span class="block text-[9px] text-slate-500 uppercase tracking-wider mt-0.5">Secs</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main><!-- /main -->
+
+      <!-- ╔═══════════════════════════════════════════╗
+         ║  RIGHT COLUMN — Live Match Centre (4/12) ║
+         ╚═══════════════════════════════════════════╝ -->
+      <aside class="lg:col-span-4 space-y-6 sticky top-6 self-start h-[calc(100vh-3rem)] overflow-y-auto custom-scrollbar pb-6" aria-label="Live match centre">
+
+            <!-- ── LIVE MATCHES WIDGET ── -->
+            <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-5 mb-6 shadow-xl reveal">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Matches
+                </h3>
+              </div>
+              <div id="live-matches-container" class="space-y-3">
+                <div class="flex items-center justify-between bg-slate-900/50 rounded-lg p-2 hover:bg-slate-700/30 transition">
+                  <div class="w-2/5 text-right font-medium text-slate-200 text-sm">Man City</div>
+                  <div class="w-1/5 text-center text-xs font-bold text-emerald-400 bg-emerald-400/10 rounded py-1">2 - 1</div>
+                  <div class="w-2/5 text-left font-medium text-slate-200 text-sm">Real Madrid</div>
+                </div>
+                <div class="flex items-center justify-between bg-slate-900/50 rounded-lg p-2 hover:bg-slate-700/30 transition">
+                  <div class="w-2/5 text-right font-medium text-slate-300 text-sm">Barcelona</div>
+                  <div class="w-1/5 text-center text-xs font-bold text-slate-500 bg-slate-800 rounded py-1">20:00</div>
+                  <div class="w-2/5 text-left font-medium text-slate-300 text-sm">Atlético</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── PREMIER LEAGUE STANDINGS ── -->
+            <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-5 shadow-xl reveal">
+              <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Premier League</h3>
+              <table class="w-full text-left">
+                <thead class="text-[10px] text-slate-500 uppercase tracking-wider border-b border-slate-700/50">
+                  <tr><th class="pb-2">Club</th><th class="pb-2 text-center">P</th><th class="pb-2 text-center">Pts</th><th class="pb-2 text-right">Form</th></tr>
+                </thead>
+                <tbody class="text-xs">
+                  <tr class="border-b border-slate-700/20"><td class="py-3 font-bold text-white flex items-center gap-2"><span class="text-emerald-500 w-3">1</span> Arsenal</td><td class="py-3 text-center text-slate-400">37</td><td class="py-3 text-center font-bold text-white">82</td><td class="py-3 text-right flex gap-1 justify-end"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block" title="Win"></span><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-slate-500 inline-block"></span></td></tr>
+                  <tr class="border-b border-slate-700/20"><td class="py-3 font-bold text-white flex items-center gap-2"><span class="text-emerald-500 w-3">2</span> Man City</td><td class="py-3 text-center text-slate-400">37</td><td class="py-3 text-center font-bold text-white">78</td><td class="py-3 text-right flex gap-1 justify-end"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-500 inline-block" title="Loss"></span><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span></td></tr>
+                  <tr><td class="py-3 font-medium text-slate-300 flex items-center gap-2"><span class="text-slate-500 w-3">3</span> Man Utd</td><td class="py-3 text-center text-slate-400">37</td><td class="py-3 text-center font-bold text-white">68</td><td class="py-3 text-right flex gap-1 justify-end"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-slate-500 inline-block"></span></td></tr>
+                </tbody>
+              </table>
+              <a href="premier-league-table.html" class="block text-center text-[11px] font-bold text-orange-500 mt-4 uppercase hover:text-orange-400">Full Table &rarr;</a>
+            </div>
+
+                        <!-- ── TRENDING NOW ── -->
+            <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-5 shadow-xl reveal mt-6">
+              <div class="flex items-center justify-between mb-5 border-b border-slate-700/50 pb-3">
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider border-l-2 border-orange-500 pl-2">Trending Now</h3>
+                <span class="flex items-center gap-1.5 text-[10px] text-red-500 font-bold uppercase tracking-widest bg-red-500/10 px-2 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Hot</span>
+              </div>
+  
+              <ul class="space-y-4">
+                <li class="group flex items-start gap-3 border-b border-slate-700/30 pb-3 last:border-0 last:pb-0">
+                  <span class="text-2xl font-black text-slate-700 font-oswald group-hover:text-orange-500 transition-colors duration-300">01</span>
+                  <div>
+                    <a href="dembele-ballon-dor.html" class="text-sm font-bold text-slate-200 group-hover:text-white leading-tight line-clamp-2 transition-colors">REDEMPTION COMPLETE: Ousmane Dembélé Crowned 2025 Ballon d'Or Winner</a>
+                    <span class="text-[10px] text-emerald-400 mt-1 block uppercase tracking-wider">Ligue 1 / Awards</span>
+                  </div>
+                </li>
+    
+                <li class="group flex items-start gap-3 border-b border-slate-700/30 pb-3 last:border-0 last:pb-0">
+                  <span class="text-2xl font-black text-slate-700 font-oswald group-hover:text-orange-500 transition-colors duration-300">02</span>
+                  <div>
+                    <a href="bastoni-transfer.html" class="text-sm font-bold text-slate-200 group-hover:text-white leading-tight line-clamp-2 transition-colors">EL CLÁSICO BATTLE: Mourinho's Real Madrid Hijack Barcelona's Move for Bastoni</a>
+                    <span class="text-[10px] text-emerald-400 mt-1 block uppercase tracking-wider">Transfers</span>
+                  </div>
+                </li>
+    
+                <li class="group flex items-start gap-3 border-b border-slate-700/30 pb-3 last:border-0 last:pb-0">
+                  <span class="text-2xl font-black text-slate-700 font-oswald group-hover:text-orange-500 transition-colors duration-300">03</span>
+                  <div>
+                    <a href="guardiola-exit.html" class="text-sm font-bold text-slate-200 group-hover:text-white leading-tight line-clamp-2 transition-colors">BOMBSHELL: Pep Guardiola to Leave Manchester City at the End of the Season</a>
+                    <span class="text-[10px] text-emerald-400 mt-1 block uppercase tracking-wider">Premier League</span>
+                  </div>
+                </li>
+    
+                <li class="group flex items-start gap-3 border-b border-slate-700/30 pb-3 last:border-0 last:pb-0">
+                  <span class="text-2xl font-black text-slate-700 font-oswald group-hover:text-orange-500 transition-colors duration-300">04</span>
+                  <div>
+                    <a href="braghin-juventus-exit.html" class="text-sm font-bold text-slate-200 group-hover:text-white leading-tight line-clamp-2 transition-colors">THE ARCHITECT DEPARTS: Stefano Braghin to Leave Juventus After 14 Years</a>
+                    <span class="text-[10px] text-emerald-400 mt-1 block uppercase tracking-wider">Serie A</span>
+                  </div>
+                </li>
+    
+                <li class="group flex items-start gap-3">
+                  <span class="text-2xl font-black text-slate-700 font-oswald group-hover:text-orange-500 transition-colors duration-300">05</span>
+                  <div>
+                    <a href="world-cup-groups.html" class="text-sm font-bold text-slate-200 group-hover:text-white leading-tight line-clamp-2 transition-colors">OFFICIAL: Full 48-Team Group Stage Draw for the 2026 FIFA World Cup</a>
+                    <span class="text-[10px] text-emerald-400 mt-1 block uppercase tracking-wider">World Cup 2026</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- ── NEWSLETTER ── -->
+            <div
+              class="bg-gradient-to-br from-amber-500/20 via-amber-600/10 to-slate-800/80 rounded-2xl border border-amber-500/25 p-5">
+              <h2 class="font-oswald text-base font-bold text-amber-400 uppercase tracking-wide">Daily Briefing</h2>
+              <p class="text-slate-400 text-xs mt-1 mb-4 leading-relaxed">
+                The morning's biggest football stories, curated and delivered before kick-off. Free, forever.
+              </p>
+              <form onsubmit="return false;" novalidate>
+                <label for="newsletter-email" class="sr-only">Email address</label>
+                <input id="newsletter-email" type="email" placeholder="your@email.com" autocomplete="email"
+                  class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors mb-2" />
+                <button type="submit"
+                  class="w-full bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-900 font-bold text-sm py-2.5 rounded-lg transition-colors">
+                  Subscribe Free →
+                </button>
+              </form>
+              <p class="text-slate-600 text-[10px] text-center mt-2">No spam. Unsubscribe in one click, anytime.</p>
+            </div>
+
+          </aside><!-- /aside -->
+
+    </div>
+  </div><!-- /page wrapper -->
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="bg-slate-950 border-t border-slate-800 mt-4" itemscope itemtype="https://schema.org/WPFooter">
+    <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+
+        <!-- Brand -->
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-7 h-7 rounded bg-amber-500 flex items-center justify-center shrink-0">
+              <svg viewBox="0 0 32 32" class="w-4 h-4" aria-hidden="true">
+                <circle cx="16" cy="16" r="14" fill="#0f172a" />
+                <path fill="white" d="M16 6 l2.5 7.5H26l-6.5 4.7 2.4 7.5L16 21l-5.9 4.7 2.4-7.5L6 13.5h7.5z" />
+              </svg>
+            </div>
+            <span class="font-oswald text-lg font-bold text-white tracking-widest uppercase">The Pitch</span>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed mb-4">
+            Trusted global football intelligence. Premium analysis, live data, and journalism that respects the
+            beautiful game.
+          </p>
+          <div class="flex gap-3">
+            <a href="#" aria-label="Twitter / X" class="text-slate-600 hover:text-amber-400 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="text-slate-600 hover:text-amber-400 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="YouTube" class="text-slate-600 hover:text-amber-400 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Leagues -->
+        <div>
+          <h3 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Leagues</h3>
+          <ul class="space-y-2">
+            <li><a href="premier-league.html"
+                class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Premier League</a></li>
+            <li><a href="la-liga.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">La Liga</a></li>
+            <li><a href="bundesliga.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Bundesliga</a></li>
+            <li><a href="serie-a.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Serie A</a></li>
+            <li><a href="ligue-1.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Ligue 1</a></li>
+            <li><a href="champions-league.html"
+                class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Champions League</a></li>
+            <li><a href="world-cup-2026.html"
+                class="text-xs text-slate-500 hover:text-amber-400 transition-colors">World Cup 2026</a></li>
+          </ul>
+        </div>
+
+        <!-- Topics -->
+        <div>
+          <h3 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Topics</h3>
+          <ul class="space-y-2">
+            <li><a href="transfers.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Transfer
+                News</a></li>
+            <li><a href="analysis.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Match Analysis</a>
+            </li>
+            <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Injury Updates</a>
+            </li>
+            <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Manager Watch</a></li>
+            <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Fantasy Football</a>
+            </li>
+            <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Women's Football</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h3 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Company</h3>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Contact Us</a></li>
+            <li><a href="privacy.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Privacy Policy</a>
+            </li>
+            <li><a href="terms.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Terms of Service</a>
+            </li>
+            <li><a href="cookies.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Cookie Policy</a></li>
+            <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Advertise With Us</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-xs text-slate-600">© 2026 The Pitch. All rights reserved. For football fans, by football fans.
+        </p>
+        <p class="text-xs text-slate-700">Live data powered by API-Football · Design: The Pitch Studio</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+  <script>
+    'use strict';
+
+    /* ─── 1. WORLD CUP COUNTDOWN ─────────────────────────────── */
+    (function () {
+      const TARGET = new Date('2026-06-11T18:00:00Z');
+      const $ = id => document.getElementById(id);
+      const pad = n => String(Math.max(0, n)).padStart(2, '0');
+
+      function tick() {
+        const diff = TARGET - Date.now();
+        if (diff <= 0) {
+          ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach(id => $(id).textContent = '00');
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        $('cd-days').textContent = pad(d);
+        $('cd-hours').textContent = pad(h);
+        $('cd-mins').textContent = pad(m);
+        $('cd-secs').textContent = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    /* ─── 2. LIVE MATCH CENTRE ───────────────────────────────── */
+    const CFG = {
+      apiKey: 'ee1a0abe132d76582b28fd27fa6119f9',
+      apiHost: 'v3.football.api-sports.io',
+      interval: 180000,
+      // Priority league IDs: PL, La Liga, Serie A, Bundesliga, Ligue 1, UCL, UEL
+      priority: [39, 140, 135, 78, 61, 2, 3]
+    };
+
+    let _skeletonGone = false;
+    let _progressRaf = null;
+    let _progressStart = 0;
+
+    function $id(id) { return document.getElementById(id); }
+
+    function removeSkeletonOnce() {
+      if (_skeletonGone) return;
+      const el = $id('skeleton-wrap');
+      if (el) el.remove();
+      _skeletonGone = true;
+    }
+
+    function spinIcon() {
+      const ico = $id('refresh-icon');
+      if (!ico) return;
+      ico.classList.remove('spin-once');
+      void ico.offsetWidth;
+      ico.classList.add('spin-once');
+      setTimeout(() => ico.classList.remove('spin-once'), 700);
+    }
+
+    function startProgress() {
+      const wrap = $id('progress-wrap');
+      const bar = $id('progress-bar');
+      if (!wrap || !bar) return;
+      wrap.classList.remove('hidden');
+      _progressStart = performance.now();
+      cancelAnimationFrame(_progressRaf);
+      (function step() {
+        const elapsed = performance.now() - _progressStart;
+        const pct = Math.min(100, (elapsed / CFG.interval) * 100);
+        bar.style.width = (100 - pct) + '%';
+        if (pct < 100) _progressRaf = requestAnimationFrame(step);
+      })();
+    }
+
+    function fmtTime(d) {
+      return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    /* Sort fixtures: priority leagues first, then by elapsed desc */
+    function sortFixtures(arr) {
+      return arr.slice().sort((a, b) => {
+        const ai = CFG.priority.indexOf(a.league?.id ?? -1);
+        const bi = CFG.priority.indexOf(b.league?.id ?? -1);
+        const ap = ai < 0 ? 9999 : ai;
+        const bp = bi < 0 ? 9999 : bi;
+        if (ap !== bp) return ap - bp;
+        return (b.fixture?.status?.elapsed ?? 0) - (a.fixture?.status?.elapsed ?? 0);
+      });
+    }
+
+    /* Group by league, return sorted array */
+    function groupByLeague(arr) {
+      const map = new Map();
+      for (const f of arr) {
+        const id = f.league?.id ?? 0;
+        if (!map.has(id)) {
+          map.set(id, {
+            id,
+            name: f.league?.name ?? 'Unknown League',
+            country: f.league?.country ?? '',
+            logo: f.league?.logo ?? '',
+            flag: f.league?.flag ?? '',
+            matches: []
+          });
+        }
+        map.get(id).matches.push(f);
+      }
+      return Array.from(map.values()).sort((a, b) => {
+        const ap = CFG.priority.indexOf(a.id); const bp = CFG.priority.indexOf(b.id);
+        return (ap < 0 ? 9999 : ap) - (bp < 0 ? 9999 : bp);
+      });
+    }
+
+    /* Build the time/status badge */
+    function statusBadge(fx) {
+      const s = fx?.status?.short ?? '';
+      const e = fx?.status?.elapsed;
+      if (s === 'HT') return `<span style="font-size:.65rem;font-weight:700;color:#94a3b8;background:#334155;padding:1px 5px;border-radius:3px">HT</span>`;
+      if (s === 'ET') return `<span style="font-size:.65rem;font-weight:700;color:#22c55e">ET ${e ?? '?'}'</span>`;
+      if (s === 'P') return `<span style="font-size:.65rem;font-weight:700;color:#f87171">Pens</span>`;
+      if (s === 'BT') return `<span style="font-size:.65rem;font-weight:700;color:#22c55e">Extra Time</span>`;
+      if (e != null) return `<span style="font-size:.65rem;font-weight:700;color:#22c55e">${e}'</span>`;
+      return `<span style="font-size:.65rem;color:#64748b">${s}</span>`;
+    }
+
+    /* Render one fixture row */
+    function matchHTML(f) {
+      const hn = f.teams?.home?.name ?? 'Home';
+      const an = f.teams?.away?.name ?? 'Away';
+      const hg = f.goals?.home != null ? f.goals.home : '–';
+      const ag = f.goals?.away != null ? f.goals.away : '–';
+      
+      const status = f.fixture?.status?.short;
+      const isLive = ['1H', '2H', 'HT', 'ET', 'P', 'BT'].includes(status);
+      
+      let badgeHTML = '';
+      if (isLive) {
+        badgeHTML = `<div class="w-1/5 text-center text-xs font-bold text-emerald-400 bg-emerald-400/10 rounded py-1">${hg} - ${ag}</div>`;
+      } else if (status === 'FT' || status === 'AET' || status === 'PEN') {
+        badgeHTML = `<div class="w-1/5 text-center text-xs font-bold text-slate-300 bg-slate-800 rounded py-1">${hg} - ${ag}</div>`;
+      } else {
+        let timeStr = '20:00';
+        if (f.fixture?.date) {
+          const d = new Date(f.fixture.date);
+          timeStr = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        }
+        badgeHTML = `<div class="w-1/5 text-center text-xs font-bold text-slate-500 bg-slate-800 rounded py-1">${timeStr}</div>`;
+      }
+
+      return `
+    <div class="flex items-center justify-between bg-slate-900/50 rounded-lg p-2 hover:bg-slate-700/30 transition">
+      <div class="w-2/5 text-right font-medium text-slate-200 text-sm overflow-hidden text-ellipsis whitespace-nowrap" title="${hn}">${hn}</div>
+      ${badgeHTML}
+      <div class="w-2/5 text-left font-medium text-slate-200 text-sm overflow-hidden text-ellipsis whitespace-nowrap" title="${an}">${an}</div>
+    </div>`;
+    }
+
+    /* Render all groups */
+    function renderMatches(fixtures) {
+      removeSkeletonOnce();
+      if (!fixtures || fixtures.length === 0) {
+        return `
+    <div class="bg-slate-800 rounded-2xl border border-slate-700/50 p-6 text-center">
+      <p style="font-size:2.5rem;margin-bottom:8px">⚽</p>
+      <p class="font-oswald" style="font-size:1rem;font-weight:700;color:#cbd5e1;margin-bottom:4px">No Live Matches Right Now</p>
+      <p style="font-size:.75rem;color:#64748b;line-height:1.5">The pitch is quiet. Live scores will appear the moment matches kick off — auto-refresh is active.</p>
+    </div>`;
+      }
+      const groups = groupByLeague(sortFixtures(fixtures));
+      return groups.map(g => `
+  <div class="bg-slate-800 rounded-2xl border border-slate-700/50 overflow-hidden mb-3">
+    <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(15,23,42,.5);border-bottom:1px solid rgba(51,65,85,.5)">
+      ${g.logo ? `<img src="${g.logo}" alt="" style="width:16px;height:16px;object-fit:contain;flex-shrink:0" loading="lazy" onerror="this.style.display='none'">` : ''}
+      <span style="font-size:.7rem;font-weight:700;color:#cbd5e1;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${g.name}</span>
+      ${g.flag
+          ? `<img src="${g.flag}" alt="${g.country}" style="width:20px;height:14px;object-fit:cover;border-radius:2px;opacity:.8;flex-shrink:0" loading="lazy" onerror="this.style.display='none'">`
+          : `<span style="font-size:.65rem;color:#475569;flex-shrink:0">${g.country}</span>`}
+    </div>
+    <div style="padding:4px 0">${g.matches.map(matchHTML).join('<div style="height:1px;background:rgba(51,65,85,.4);margin:0 12px"></div>')}</div>
+  </div>`).join('');
+    }
+
+    /* Error state */
+    function renderError(msg) {
+      removeSkeletonOnce();
+      return `
+  <div class="bg-slate-800 rounded-2xl border border-red-900/40 p-5 text-center">
+    <p style="font-size:2rem;margin-bottom:8px">⚠️</p>
+    <p class="font-oswald" style="font-size:1rem;font-weight:700;color:#cbd5e1;margin-bottom:4px">Live Data Unavailable</p>
+    <p style="font-size:.7rem;color:#64748b;margin-bottom:12px;line-height:1.5">${msg || 'Check your API key or network connection.'}</p>
+    <button onclick="fetchLiveMatches(true)"
+            style="font-size:.7rem;font-weight:700;background:#F59E0B;color:#0f172a;padding:6px 16px;border-radius:8px;border:none;cursor:pointer">
+      Retry
+    </button>
+  </div>`;
+    }
+
+    /* Main fetch */
+    async function fetchLiveMatches(manual = false) {
+      const container = $id('live-matches-container');
+      const label = $id('last-updated-text');
+      if (manual) spinIcon();
+      try {
+        const res = await fetch(`https://${CFG.apiHost}/fixtures?live=all`, {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-key': CFG.apiKey,
+            'x-rapidapi-host': CFG.apiHost
+          }
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        const json = await res.json();
+        if (json.errors && Object.keys(json.errors).length > 0) {
+          throw new Error(Object.values(json.errors)[0]);
+        }
+        const fixtures = json.response ?? [];
+        container.innerHTML = renderMatches(fixtures);
+        const n = fixtures.length;
+        label.textContent = n > 0
+          ? `${n} live match${n !== 1 ? 'es' : ''} · Updated ${fmtTime(new Date())}`
+          : `No live matches · Checked ${fmtTime(new Date())}`;
+      } catch (err) {
+        console.error('[ThePitch Live]', err);
+        container.innerHTML = renderError(err.message);
+        label.textContent = `Update failed · ${fmtTime(new Date())}`;
+      }
+      startProgress();
+    }
+
+    /* Boot */
+    fetchLiveMatches();
+    setInterval(fetchLiveMatches, CFG.interval);
+  </script>
+
+  <!-- ─── SCROLL REVEAL ─── -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-8");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    });
+  </script>
+</body>
+
+</html>
