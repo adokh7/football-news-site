@@ -3,7 +3,7 @@
 
   <!-- ─── Home ─── -->
   <url>
-    <loc>https://www.yourdomain.com/</loc>
+    <loc>https://www.govolsgo.com/</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -11,49 +11,49 @@
 
   <!-- ─── Category hubs ─── -->
   <url>
-    <loc>https://www.yourdomain.com/premier-league.html</loc>
+    <loc>https://www.govolsgo.com/premier-league.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/la-liga.html</loc>
+    <loc>https://www.govolsgo.com/la-liga.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/bundesliga.html</loc>
+    <loc>https://www.govolsgo.com/bundesliga.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/ligue-1.html</loc>
+    <loc>https://www.govolsgo.com/ligue-1.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/champions-league.html</loc>
+    <loc>https://www.govolsgo.com/champions-league.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/transfers.html</loc>
+    <loc>https://www.govolsgo.com/transfers.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/world-cup-2026.html</loc>
+    <loc>https://www.govolsgo.com/world-cup-2026.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/serie-a.html</loc>
+    <loc>https://www.govolsgo.com/serie-a.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -61,37 +61,37 @@
 
   <!-- ─── Standings / data pages ─── -->
   <url>
-    <loc>https://www.yourdomain.com/premier-league-table.html</loc>
+    <loc>https://www.govolsgo.com/premier-league-table.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/la-liga-table.html</loc>
+    <loc>https://www.govolsgo.com/la-liga-table.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/bundesliga-table.html</loc>
+    <loc>https://www.govolsgo.com/bundesliga-table.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/ligue-1-table.html</loc>
+    <loc>https://www.govolsgo.com/ligue-1-table.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/serie-a-table.html</loc>
+    <loc>https://www.govolsgo.com/serie-a-table.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/world-cup-groups.html</loc>
+    <loc>https://www.govolsgo.com/world-cup-groups.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -99,67 +99,67 @@
 
   <!-- ─── Articles ─── -->
   <url>
-    <loc>https://www.yourdomain.com/dembele-ballon-dor.html</loc>
+    <loc>https://www.govolsgo.com/dembele-ballon-dor.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/alaba-transfer.html</loc>
+    <loc>https://www.govolsgo.com/alaba-transfer.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/enrique-psg-future.html</loc>
+    <loc>https://www.govolsgo.com/enrique-psg-future.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/guardiola-exit.html</loc>
+    <loc>https://www.govolsgo.com/guardiola-exit.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/holden-usmnt.html</loc>
+    <loc>https://www.govolsgo.com/holden-usmnt.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/nubel-transfer.html</loc>
+    <loc>https://www.govolsgo.com/nubel-transfer.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/tottenham-struggles.html</loc>
+    <loc>https://www.govolsgo.com/tottenham-struggles.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/podolski-retirement.html</loc>
+    <loc>https://www.govolsgo.com/podolski-retirement.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/owen-england.html</loc>
+    <loc>https://www.govolsgo.com/owen-england.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/richards-contract.html</loc>
+    <loc>https://www.govolsgo.com/richards-contract.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/braghin-juventus-exit.html</loc>
+    <loc>https://www.govolsgo.com/braghin-juventus-exit.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -167,31 +167,31 @@
 
   <!-- ─── Company / legal ─── -->
   <url>
-    <loc>https://www.yourdomain.com/about.html</loc>
+    <loc>https://www.govolsgo.com/about.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/contact.html</loc>
+    <loc>https://www.govolsgo.com/contact.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/privacy.html</loc>
+    <loc>https://www.govolsgo.com/privacy.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/terms.html</loc>
+    <loc>https://www.govolsgo.com/terms.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.yourdomain.com/cookies.html</loc>
+    <loc>https://www.govolsgo.com/cookies.html</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
