@@ -260,8 +260,7 @@
             </svg>
           </div>
           <div class="leading-tight">
-            <span class="font-oswald text-xl font-bold text-white tracking-widest uppercase block leading-none">The
-              Pitch</span>
+            <span class="font-oswald text-xl font-bold text-white tracking-widest uppercase block leading-none">Govolsgo</span>
             <span class="text-[10px] text-slate-500 tracking-widest uppercase hidden sm:block">Global Football
               Intelligence</span>
           </div>
@@ -868,7 +867,7 @@
           ? `${n} live match${n !== 1 ? 'es' : ''} · Updated ${fmtTime(new Date())}`
           : `No live matches · Checked ${fmtTime(new Date())}`;
       } catch (err) {
-        console.error('[ThePitch Live]', err);
+        console.error('[Govolsgo Live]', err);
         container.innerHTML = renderError(err.message);
         label.textContent = `Update failed · ${fmtTime(new Date())}`;
       }
