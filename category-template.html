@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    ════════════════════════════════════════════════════════════
+    SEO: Update these four tags for every category page clone.
+    ════════════════════════════════════════════════════════════
+  -->
+  <title>Premier League News, Analysis &amp; Transfers | The Pitch</title>
+  <meta name="description"
+    content="The latest Premier League news, transfer rumours, tactical analysis, and match reports from England's top flight. Updated daily by The Pitch's dedicated correspondents.">
+  <meta name="keywords"
+    content="Premier League news, Premier League transfers, Premier League analysis, EPL news, English football, Man City, Arsenal, Liverpool, Chelsea">
+  <link rel="canonical" href="https://thepitch.com/premier-league/">
+
+  <!-- Shared meta -->
+  <meta name="author" content="The Pitch Editorial Team">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Premier League News, Analysis &amp; Transfers | The Pitch">
+  <meta property="og:description"
+    content="The latest Premier League news, transfer rumours, and tactical analysis from The Pitch.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Premier League News | The Pitch">
+  <meta name="twitter:description" content="Latest Premier League news, transfers, and match analysis.">
+
+  <!-- Structured Data: BreadcrumbList + CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",           "item": "https://thepitch.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Premier League", "item": "https://thepitch.com/premier-league/" }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Premier League News",
+        "description": "The latest Premier League news, transfer rumours, tactical analysis, and match reports.",
+        "url": "https://thepitch.com/premier-league/",
+        "publisher": { "@type": "Organization", "name": "The Pitch", "url": "https://thepitch.com" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts — identical to index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind custom config — mirrors index.html exactly -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ['Oswald', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            gold: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box }
+    body { font-family: 'Inter', sans-serif }
+
+    /* ── Pulse dot (header LIVE badge) ── */
+    .pulse-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; background: #22C55E;
+      animation: pulse-anim 1.4s ease-in-out infinite
+    }
+    @keyframes pulse-anim {
+      0%, 100% { opacity: 1; transform: scale(1) }
+      50%       { opacity: .25; transform: scale(.7) }
+    }
+
+    /* ── Breaking ticker ── */
+    @keyframes ticker-slide {
+      0%   { transform: translateX(100vw) }
+      100% { transform: translateX(-100%) }
+    }
+    .ticker-inner {
+      animation: ticker-slide 40s linear infinite;
+      white-space: nowrap; display: inline-block
+    }
+
+    /* ── Article card ── */
+    .article-card { transition: border-color .2s, box-shadow .2s, transform .2s }
+    .article-card:hover {
+      border-color: rgba(251,191,36,.45);
+      box-shadow: 0 4px 24px rgba(0,0,0,.35), 0 0 0 1px rgba(251,191,36,.15);
+      transform: translateY(-2px)
+    }
+    .article-card:hover .card-img img { transform: scale(1.06) }
+    .article-card:hover .card-title   { color: #F59E0B }
+    .card-img { overflow: hidden }
+    .card-img img { transition: transform .55s ease }
+    .card-title   { transition: color .2s }
+
+    /* ── Section bar accent ── */
+    .section-bar { border-left: 3px solid #F59E0B; padding-left: 10px }
+
+    /* ── Category hero gradient ── */
+    .cat-hero-gradient {
+      background: linear-gradient(135deg, rgba(245,158,11,.14) 0%, rgba(30,41,59,0) 60%)
+    }
+
+    /* ── Tag chip colours (one class per category colour) ── */
+    .tag-pl       { color: #a78bfa; background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.25) }
+    .tag-ucl      { color: #60a5fa; background: rgba(96,165,250,.12);  border: 1px solid rgba(96,165,250,.25)  }
+    .tag-wc       { color: #34d399; background: rgba(52,211,153,.12);  border: 1px solid rgba(52,211,153,.25)  }
+    .tag-laliga   { color: #f87171; background: rgba(248,113,113,.12); border: 1px solid rgba(248,113,113,.25) }
+    .tag-analysis { color: #FBBF24; background: rgba(251,191,36,.12);  border: 1px solid rgba(251,191,36,.25)  }
+    .tag-transfer { color: #fb923c; background: rgba(251,146,60,.12);  border: 1px solid rgba(251,146,60,.25)  }
+    .tag-report   { color: #38bdf8; background: rgba(56,189,248,.12);  border: 1px solid rgba(56,189,248,.25)  }
+    .tag-opinion  { color: #a3e635; background: rgba(163,230,53,.12);  border: 1px solid rgba(163,230,53,.25)  }
+    .tag-bundesliga{ color: #4ade80; background: rgba(74,222,128,.12); border: 1px solid rgba(74,222,128,.25)  }
+
+    /* ── Ad placeholder hatching ── */
+    .ad-hatch {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(30,41,59,.4), rgba(30,41,59,.4) 10px,
+        rgba(15,23,42,.25) 10px, rgba(15,23,42,.25) 20px
+      )
+    }
+
+    /* ── Pagination ── */
+    .page-btn {
+      min-width: 40px; height: 40px; display: inline-flex;
+      align-items: center; justify-content: center;
+      border-radius: .5rem; font-size: .875rem; font-weight: 600;
+      border: 1px solid #334155; color: #94a3b8;
+      background: #1e293b; transition: all .2s; cursor: pointer
+    }
+    .page-btn:hover   { background: #F59E0B; border-color: #F59E0B; color: #0f172a }
+    .page-btn.active  { background: #F59E0B; border-color: #F59E0B; color: #0f172a; cursor: default }
+    .page-btn.ellipsis{ border-color: transparent; background: transparent; cursor: default; color: #475569 }
+    .page-btn:disabled{ opacity: .35; pointer-events: none }
+
+    /* ── Shimmer (kept for consistency) ── */
+    .shimmer {
+      background: linear-gradient(90deg, #1e293b 25%, #273548 50%, #1e293b 75%);
+      background-size: 400% 100%; animation: shimmer-anim 1.4s infinite
+    }
+    @keyframes shimmer-anim {
+      0%   { background-position: 100% 50% }
+      100% { background-position:   0% 50% }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 antialiased min-h-screen">
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║                      SITE HEADER                        ║
+     ║  Identical to index.html — copy-paste safe              ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
+
+  <!-- Top bar -->
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-[60px]">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2.5" aria-label="The Pitch Home">
+        <div class="w-8 h-8 rounded bg-amber-500 flex items-center justify-center shrink-0">
+          <svg viewBox="0 0 32 32" class="w-5 h-5" aria-hidden="true">
+            <circle cx="16" cy="16" r="14" fill="#0f172a"/>
+            <path fill="white" d="M16 6 l2.5 7.5H26l-6.5 4.7 2.4 7.5L16 21l-5.9 4.7 2.4-7.5L6 13.5h7.5z"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <span class="font-oswald text-xl font-bold text-white tracking-widest uppercase block leading-none">The Pitch</span>
+          <span class="text-[10px] text-slate-500 tracking-widest uppercase hidden sm:block">Global Football Intelligence</span>
+        </div>
+      </a>
+
+      <!-- Primary nav -->
+      <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-6">
+        <a href="premier-league.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Premier League</a>
+        <a href="la-liga.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">La Liga</a>
+        <a href="bundesliga.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Bundesliga</a>
+        <a href="ligue-1.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Ligue 1</a>
+        <a href="serie-a.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Serie A</a>
+        <a href="champions-league.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Champions League</a>
+        <a href="transfers.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Transfers</a>
+        <a href="world-cup-2026.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">World Cup 2026</a>
+        <a href="analysis.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Analysis</a>
+      </nav>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 bg-green-950/60 border border-green-800/50 rounded-full px-3 py-1">
+          <span class="pulse-dot"></span>
+          <span class="text-[11px] font-bold text-green-400 tracking-widest">LIVE</span>
+        </div>
+        <button class="md:hidden text-slate-400 hover:text-white p-1" aria-label="Open menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breaking news ticker -->
+  <div class="bg-amber-500 h-7 flex items-center overflow-hidden">
+    <span class="bg-slate-900 text-amber-400 text-[10px] font-black tracking-widest uppercase px-3 h-full flex items-center shrink-0 font-oswald border-r border-amber-600">Breaking</span>
+    <div class="flex-1 overflow-hidden">
+      <div class="ticker-inner text-slate-900 text-xs font-semibold">
+          <span class="mx-4">⚡️</span>
+          <a href="alaba-transfer.html" class="hover:underline font-medium">END OF AN ERA: David Alaba to exit Real Madrid</a> 
+          <span class="mx-4">•</span> 
+          <a href="guardiola-exit.html" class="hover:underline font-medium">THE SAUDI PURSUIT: Pep Guardiola's Agent Reveals Al-Nassr Contact</a> 
+          <span class="mx-4">•</span> 
+          <a href="enrique-psg-future.html" class="hover:underline font-medium">THE 2030 DEADLINE: Luis Enrique Maps Out PSG Retirement</a>
+          <span class="mx-4">•</span> 
+          <a href="nubel-transfer.html" class="hover:underline font-medium">GOALKEEPER MERRY-GO-ROUND: Bayern Munich to Cash In on Alexander Nübel</a>
+        </div>
+    </div>
+  </div>
+
+</header>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║              BREADCRUMB NAVIGATION                       ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="bg-slate-950/60 border-b border-slate-800/60">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-2.5">
+    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
+      <svg class="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+      </svg>
+      <span class="text-amber-400 font-medium" aria-current="page">Premier League</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║              CATEGORY HERO HEADER                        ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<section class="cat-hero-gradient border-b border-slate-800/80" aria-labelledby="cat-heading">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-10 lg:py-14">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+
+      <!-- Left: title block -->
+      <div>
+        <!-- Category label pill -->
+        <div class="flex items-center gap-2.5 mb-3">
+          <div class="w-1 h-6 bg-amber-500 rounded-full"></div>
+          <span class="tag-pl text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Premier League</span>
+        </div>
+
+        <!-- ONE h1 per page -->
+        <h1 id="cat-heading"
+            class="font-oswald text-4xl lg:text-5xl font-bold text-white tracking-wide leading-tight mb-3">
+          Premier League News
+        </h1>
+        <p class="text-slate-400 text-sm lg:text-base max-w-xl leading-relaxed">
+          The latest updates, transfer rumours, tactical analysis, and match reports from England's top flight — curated daily by The Pitch's dedicated correspondents.
+        </p>
+      </div>
+
+      <!-- Right: quick stats strip -->
+      <div class="flex items-center gap-6 shrink-0">
+        <div class="text-center">
+          <p class="font-oswald text-2xl font-bold text-amber-400">380</p>
+          <p class="text-[10px] text-slate-500 uppercase tracking-widest">Matches</p>
+        </div>
+        <div class="w-px h-10 bg-slate-700"></div>
+        <div class="text-center">
+          <p class="font-oswald text-2xl font-bold text-amber-400">20</p>
+          <p class="text-[10px] text-slate-500 uppercase tracking-widest">Clubs</p>
+        </div>
+        <div class="w-px h-10 bg-slate-700"></div>
+        <div class="text-center">
+          <p class="font-oswald text-2xl font-bold text-amber-400">2025/26</p>
+          <p class="text-[10px] text-slate-500 uppercase tracking-widest">Season</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter / sort tabs -->
+    <div class="flex flex-wrap items-center gap-2 mt-8 border-t border-slate-800/60 pt-5">
+      <span class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mr-1">Filter:</span>
+      <button class="filter-btn active-filter text-[11px] font-bold px-3.5 py-1.5 rounded-full bg-amber-500 text-slate-900 border border-amber-500">All</button>
+      <button class="filter-btn text-[11px] font-semibold px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-amber-500/50 hover:text-slate-200 transition-colors">Match Reports</button>
+      <button class="filter-btn text-[11px] font-semibold px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-amber-500/50 hover:text-slate-200 transition-colors">Transfers</button>
+      <button class="filter-btn text-[11px] font-semibold px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-amber-500/50 hover:text-slate-200 transition-colors">Analysis</button>
+      <button class="filter-btn text-[11px] font-semibold px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-amber-500/50 hover:text-slate-200 transition-colors">Opinion</button>
+      <button class="filter-btn text-[11px] font-semibold px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-amber-500/50 hover:text-slate-200 transition-colors">Injury News</button>
+      <div class="ml-auto flex items-center gap-2">
+        <label for="sort-select" class="text-[10px] text-slate-500 uppercase tracking-widest">Sort:</label>
+        <select id="sort-select"
+                class="bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold rounded-lg px-3 py-1.5 focus:outline-none focus:border-amber-500 transition-colors cursor-pointer">
+          <option>Latest First</option>
+          <option>Most Read</option>
+          <option>Editor's Pick</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║              MAIN CONTENT — ARTICLE GRID                 ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<main class="max-w-screen-xl mx-auto px-4 lg:px-8 py-10" aria-label="Premier League articles">
+
+  <!-- Article count + page indicator -->
+  <div class="flex items-center justify-between mb-6">
+    <p class="text-xs text-slate-500">
+      Showing <strong class="text-slate-300">1–12</strong> of <strong class="text-slate-300">148</strong> articles
+    </p>
+    <p class="text-xs text-slate-500">Page <strong class="text-slate-300">1</strong> of 13</p>
+  </div>
+
+  <!-- ── 3-COLUMN ARTICLE GRID ── -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="article-grid">
+
+    <!-- ─────────────────────────────────────────
+         CARD 1 — Feature / Lead Story
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80&auto=format&fit=crop"
+             alt="Premier League stadium packed under floodlights"
+             class="w-full h-full object-cover" loading="eager" fetchpriority="high" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-analysis text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Analysis</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          Liverpool's High-Line Gamble: How Slot's Defensive Shape Has Changed the Premier League's Tactical Landscape
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          A back-four operating at the halfway line. An offside trap sprung 4.3 times per match. We break down why Arne Slot's audacious defensive gamble is winning the title race — and who it will leave exposed.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">JH</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">James Harrington</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-22" itemprop="datePublished">22 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              7 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 2 — Transfer Story
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1551280857-2b9bbe52acf9?w=600&q=80&auto=format&fit=crop"
+             alt="Football transfer press conference signing"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-transfer text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Transfer</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          Arsenal's £68m Move for Mathis Keller Takes a Major Step Forward as Medical Pencilled In for Thursday
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          Fabrizio Romano confirms personal terms have been agreed with the German international on a three-year deal, with a further option extending through 2030.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">SR</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">Sophie Reynolds</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-22" itemprop="datePublished">22 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              4 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 3 — Match Report
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&q=80&auto=format&fit=crop"
+             alt="Chelsea vs Arsenal Premier League match"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-report text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Match Report</span>
+        <!-- Score badge for match reports -->
+        <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-sm border border-slate-700/60 rounded-lg px-2.5 py-1 text-center">
+          <span class="font-oswald text-white font-bold text-sm leading-none">2 – 1</span>
+        </div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          Trossard's Brace Seals Pulsating North London Derby as Arsenal Extend Title Lead to Seven Points
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          A breathless 90 minutes at the Emirates saw the Gunners dominate the second half after Spurs' early opener, with Leandro Trossard producing a man-of-the-match performance to seal three crucial points.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">DM</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">David Marsh</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-21" itemprop="datePublished">21 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 4 — ADSENSE NATIVE PLACEHOLDER
+         (Sits flush in the grid as item #4)
+         ───────────────────────────────────────── -->
+    <div class="ad-hatch rounded-2xl border border-dashed border-slate-700/50 bg-slate-800/25 overflow-hidden flex flex-col"
+         role="complementary" aria-label="Advertisement">
+      <div class="flex-1 flex flex-col items-center justify-center p-6 min-h-[280px] gap-3">
+        <div class="w-10 h-10 rounded-full bg-slate-700/60 flex items-center justify-center mb-1">
+          <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+          </svg>
+        </div>
+        <p class="text-[10px] text-slate-600 uppercase tracking-widest font-semibold">Sponsored</p>
+        <!--
+          ══════════════════════════════════════════════════
+          REPLACE THIS BLOCK WITH YOUR GOOGLE ADSENSE TAG:
+
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="XXXXXXXXXX"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          ══════════════════════════════════════════════════
+        -->
+        <p class="text-slate-700 text-sm font-medium text-center">[ Google AdSense<br>In-Feed Native Unit ]</p>
+        <p class="text-[10px] text-slate-700">Advertisement</p>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────
+         CARD 5 — Opinion
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80&auto=format&fit=crop"
+             alt="Premier League manager press conference"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-opinion text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Opinion</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          The Haaland Conundrum: Why City's Tactical Dependency on One Man Is Their Greatest Vulnerability
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          Forty-one league goals. An impossible standard to maintain. Our lead columnist argues that Pep Guardiola's unconditional reliance on the Norwegian is a ticking time bomb for Manchester City's title aspirations.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">OT</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">Oliver Thompson</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-21" itemprop="datePublished">21 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              6 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 6 — Injury / Squad News
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=600&q=80&auto=format&fit=crop"
+             alt="Football player injury treatment pitch side"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-pl text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Squad News</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          Chelsea Injury Crisis Deepens as Two First-Team Regulars Ruled Out for the Remainder of the Season
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          Enzo Maresca confirms the full extent of Chelsea's injury woes ahead of the final-day run-in, with the club's top-four hopes hanging by a thread after successive blows in training.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">KP</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">Katie Park</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-21" itemprop="datePublished">21 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              3 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 7 — Tactical Analysis
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=600&q=80&auto=format&fit=crop"
+             alt="Football tactical board analysis"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-analysis text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Analysis</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          Slot's 4-3-3 to 4-2-3-1 Pivot: The Mid-Season Tactical Shift That Quietly Won Liverpool the Title
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          Using data from Opta and StatsBomb, we chart the precise moment Arne Slot adjusted his system and why the switch neutralised the league's two most dangerous counter-attacking outfits.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">JH</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">James Harrington</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-20" itemprop="datePublished">20 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              11 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 8 — Manager News
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600&q=80&auto=format&fit=crop"
+             alt="Football manager sideline touchline"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-pl text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Manager</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          Manchester United Accelerate Search for New Manager as Short-List of Three Confirmed by Club Sources
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          Old Trafford insiders confirm the club's technical committee have narrowed their managerial search following an emergency board meeting, with a decision expected before June 1st.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">SR</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">Sophie Reynolds</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-20" itemprop="datePublished">20 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              4 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 9 — Transfer / Scout
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&q=80&auto=format&fit=crop"
+             alt="Football scouting notes player profile"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-transfer text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Scout Report</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          The £40m Midfielder Nobody Is Talking About: Why Tottenham's Scout Network Has Zeroed In on Lazio's Rovella
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          Our analytics desk runs the numbers on Nicolo Rovella — press resistance, vertical carrying, and deep-lying creativity — and explains why Spurs' recruitment team sees him as a generational find at his price point.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">DM</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">David Marsh</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-19" itemprop="datePublished">19 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              8 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 10 — Match Preview
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1528495612343-9ca9f4a4de28?w=600&q=80&auto=format&fit=crop"
+             alt="Premier League match day stadium atmosphere"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-report text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Preview</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          Newcastle vs Man City Preview: Five Key Battles That Will Decide St James' Park Blockbuster
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          With Champions League qualification on the line for both sides, Saturday's clash at St James' Park has the makings of a Premier League classic. We identify the five individual matchups that will prove decisive.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">OT</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">Oliver Thompson</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-19" itemprop="datePublished">19 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 11 — Data / Stats
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=600&q=80&auto=format&fit=crop"
+             alt="Football statistics data analytics display"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-analysis text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Data</span>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          By the Numbers: How the 2025/26 Premier League Season Broke Seven Statistical Records Simultaneously
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          From the highest ever aggregate goals tally to the most red cards in a single campaign, we document the statistical anomalies that made this one of the most extraordinary top-flight seasons in English football history.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">KP</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">Katie Park</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-18" itemprop="datePublished">18 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              9 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─────────────────────────────────────────
+         CARD 12 — Long Read / Feature
+         ───────────────────────────────────────── -->
+    <article class="article-card bg-slate-800 rounded-2xl border border-slate-700/40 overflow-hidden cursor-pointer flex flex-col"
+             itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="card-img relative h-48">
+        <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600&q=80&auto=format&fit=crop"
+             alt="Football fan culture Premier League match atmosphere"
+             class="w-full h-full object-cover" loading="lazy" itemprop="image"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        <span class="absolute top-3 left-3 tag-opinion text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full">Long Read</span>
+        <!-- Long read flag -->
+        <div class="absolute bottom-3 right-3 flex items-center gap-1 bg-amber-500/90 text-slate-900 text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+          <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          14 min read
+        </div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <h3 class="card-title font-oswald text-lg font-bold text-white leading-snug mb-2" itemprop="headline">
+          The Premier League's Identity Crisis: Globalisation, Ticket Prices, and the Fading Soul of English Football
+        </h3>
+        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 flex-1" itemprop="description">
+          An investigation into whether the world's wealthiest league has lost its connection to the communities that built it — and what genuine reform would require from clubs, broadcasters, and governing bodies alike.
+        </p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
+              <span class="text-[9px] font-bold text-amber-400">JH</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium" itemprop="name">James Harrington</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-500">
+            <time datetime="2026-05-17" itemprop="datePublished">17 May</time>
+            <span class="flex items-center gap-1 bg-slate-700/50 px-1.5 py-0.5 rounded">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              14 min
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /article grid -->
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║              SEO PAGINATION COMPONENT                    ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <nav aria-label="Article pagination" class="mt-12 mb-6 flex flex-col items-center gap-4">
+    <div class="flex items-center gap-2 flex-wrap justify-center">
+
+      <!-- Prev -->
+      <button class="page-btn gap-1.5" disabled aria-label="Previous page">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        <span class="hidden sm:inline text-xs">Prev</span>
+      </button>
+
+      <!-- Page 1 — active -->
+      <button class="page-btn active" aria-current="page" aria-label="Page 1">1</button>
+
+      <!-- Page 2 -->
+      <a href="?page=2" class="page-btn" aria-label="Page 2">2</a>
+
+      <!-- Page 3 -->
+      <a href="?page=3" class="page-btn" aria-label="Page 3">3</a>
+
+      <!-- Page 4 -->
+      <a href="?page=4" class="page-btn" aria-label="Page 4">4</a>
+
+      <!-- Page 5 -->
+      <a href="?page=5" class="page-btn" aria-label="Page 5">5</a>
+
+      <!-- Ellipsis -->
+      <span class="page-btn ellipsis" aria-hidden="true">…</span>
+
+      <!-- Last page -->
+      <a href="?page=13" class="page-btn" aria-label="Page 13">13</a>
+
+      <!-- Next -->
+      <a href="?page=2" class="page-btn gap-1.5" aria-label="Next page">
+        <span class="hidden sm:inline text-xs">Next</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Descriptive text for SEO / accessibility -->
+    <p class="text-xs text-slate-600">
+      Page 1 of 13 &nbsp;·&nbsp; 148 articles in <strong class="text-slate-500">Premier League</strong>
+    </p>
+  </nav>
+
+</main><!-- /main -->
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║                      SITE FOOTER                         ║
+     ║  Identical to index.html — copy-paste safe               ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<footer class="bg-slate-950 border-t border-slate-800 mt-4" itemscope itemtype="https://schema.org/WPFooter">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-7 h-7 rounded bg-amber-500 flex items-center justify-center shrink-0">
+            <svg viewBox="0 0 32 32" class="w-4 h-4" aria-hidden="true">
+              <circle cx="16" cy="16" r="14" fill="#0f172a"/>
+              <path fill="white" d="M16 6 l2.5 7.5H26l-6.5 4.7 2.4 7.5L16 21l-5.9 4.7 2.4-7.5L6 13.5h7.5z"/>
+            </svg>
+          </div>
+          <span class="font-oswald text-lg font-bold text-white tracking-widest uppercase">The Pitch</span>
+        </div>
+        <p class="text-slate-500 text-xs leading-relaxed mb-4">
+          Trusted global football intelligence. Premium analysis, live data, and journalism that respects the beautiful game.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" aria-label="Twitter / X" class="text-slate-600 hover:text-amber-400 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="text-slate-600 hover:text-amber-400 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="text-slate-600 hover:text-amber-400 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Leagues -->
+      <div>
+        <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Leagues</h2>
+        <ul class="space-y-2">
+          <li><a href="premier-league.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Premier League</a></li>
+          <li><a href="la-liga.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">La Liga</a></li>
+          <li><a href="bundesliga.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Bundesliga</a></li>
+          <li><a href="serie-a.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Serie A</a></li>
+          <li><a href="ligue-1.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Ligue 1</a></li>
+          <li><a href="champions-league.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Champions League</a></li>
+          <li><a href="world-cup-2026.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">World Cup 2026</a></li>
+        </ul>
+      </div>
+
+      <!-- Topics -->
+      <div>
+        <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Topics</h2>
+        <ul class="space-y-2">
+          <li><a href="transfers.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Transfer News</a></li>
+          <li><a href="analysis.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Match Analysis</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Injury Updates</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Manager Watch</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Fantasy Football</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Women's Football</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Company</h2>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">About Us</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Contact Us</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Terms of Service</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Cookie Policy</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Advertise With Us</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-600">© 2026 The Pitch. All rights reserved. For football fans, by football fans.</p>
+      <p class="text-xs text-slate-700">Live data powered by API-Football · Design: The Pitch Studio</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║                   VANILLA JAVASCRIPT                     ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<script>
+'use strict';
+
+/* ─── Filter tabs ──────────────────────────────────────────── */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active-filter', 'bg-amber-500', 'text-slate-900', 'border-amber-500');
+      b.classList.add('bg-slate-800', 'text-slate-400', 'border-slate-700');
+    });
+    btn.classList.add('active-filter', 'bg-amber-500', 'text-slate-900', 'border-amber-500');
+    btn.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-700');
+    // TODO: wire to real filter logic when connected to a CMS / API
+  });
+});
+
+/* ─── Pagination: update active state on click ─────────────── */
+document.querySelectorAll('.page-btn:not(.ellipsis):not([disabled])').forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    if (this.tagName === 'A') return; // let real hrefs navigate
+    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    this.setAttribute('aria-current', 'page');
+  });
+});
+
+/* ─── Sort select cosmetic feedback ───────────────────────── */
+const sortSelect = document.getElementById('sort-select');
+if (sortSelect) {
+  sortSelect.addEventListener('change', () => {
+    // TODO: wire to real sort logic
+    console.log('[ThePitch] Sort changed to:', sortSelect.value);
+  });
+}
+</script>
+</body>
+</html>

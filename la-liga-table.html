@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    ════════════════════════════════════════════════════════════
+    SEO: La Liga Full Table Standings
+    ════════════════════════════════════════════════════════════
+  -->
+  <title>La Liga Table 2025/2026 | Full Standings</title>
+  <meta name="description" content="Check the full and updated 2025/2026 La Liga table. Follow Real Madrid, Barcelona, and the rest of the Spanish top flight.">
+  <meta name="keywords"
+    content="La Liga news, La Liga transfers, La Liga analysis, Spanish football, Real Madrid, Barcelona, Atletico Madrid, Girona">
+  <link rel="canonical" href="https://www.yourdomain.com/la-liga-table.html" />
+
+  <!-- Shared meta -->
+  <meta name="author" content="The Pitch Editorial Team">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="La Liga News, Analysis &amp; Transfers | The Pitch">
+  <meta property="og:description"
+    content="The latest La Liga news, transfer rumours, and tactical analysis from The Pitch.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="La Liga News | The Pitch">
+  <meta name="twitter:description" content="Latest La Liga news, transfers, and match analysis.">
+
+  <!-- Structured Data: BreadcrumbList + CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",    "item": "https://thepitch.com/" },
+          { "@type": "ListItem", "position": 2, "name": "La Liga", "item": "https://thepitch.com/la-liga/" }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "La Liga News",
+        "description": "The latest La Liga news, transfer rumours, tactical analysis, and match reports.",
+        "url": "https://thepitch.com/la-liga/",
+        "publisher": { "@type": "Organization", "name": "The Pitch", "url": "https://thepitch.com" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts — identical to index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind custom config — mirrors index.html exactly -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ['Oswald', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            gold: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box }
+    body { font-family: 'Inter', sans-serif }
+
+    /* ── Pulse dot (header LIVE badge) ── */
+    .pulse-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; background: #22C55E;
+      animation: pulse-anim 1.4s ease-in-out infinite
+    }
+    @keyframes pulse-anim {
+      0%, 100% { opacity: 1; transform: scale(1) }
+      50%       { opacity: .25; transform: scale(.7) }
+    }
+
+    /* ── Breaking ticker ── */
+    @keyframes ticker-slide {
+      0%   { transform: translateX(100vw) }
+      100% { transform: translateX(-100%) }
+    }
+    .ticker-inner {
+      animation: ticker-slide 40s linear infinite;
+      white-space: nowrap; display: inline-block
+    }
+
+    /* ── Article card ── */
+    .article-card { transition: border-color .2s, box-shadow .2s, transform .2s }
+    .article-card:hover {
+      border-color: rgba(251,191,36,.45);
+      box-shadow: 0 4px 24px rgba(0,0,0,.35), 0 0 0 1px rgba(251,191,36,.15);
+      transform: translateY(-2px)
+    }
+    .article-card:hover .card-img img { transform: scale(1.06) }
+    .article-card:hover .card-title   { color: #F59E0B }
+    .card-img { overflow: hidden }
+    .card-img img { transition: transform .55s ease }
+    .card-title   { transition: color .2s }
+
+    /* ── Section bar accent ── */
+    .section-bar { border-left: 3px solid #F59E0B; padding-left: 10px }
+
+    /* ── Category hero gradient ── */
+    .cat-hero-gradient {
+      background: linear-gradient(135deg, rgba(245,158,11,.14) 0%, rgba(30,41,59,0) 60%)
+    }
+
+    /* ── Tag chip colours ── */
+    .tag-pl       { color: #a78bfa; background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.25) }
+    .tag-ucl      { color: #60a5fa; background: rgba(96,165,250,.12);  border: 1px solid rgba(96,165,250,.25)  }
+    .tag-wc       { color: #34d399; background: rgba(52,211,153,.12);  border: 1px solid rgba(52,211,153,.25)  }
+    .tag-laliga   { color: #f87171; background: rgba(248,113,113,.12); border: 1px solid rgba(248,113,113,.25) }
+    .tag-analysis { color: #FBBF24; background: rgba(251,191,36,.12);  border: 1px solid rgba(251,191,36,.25)  }
+    .tag-transfer { color: #fb923c; background: rgba(251,146,60,.12);  border: 1px solid rgba(251,146,60,.25)  }
+    .tag-report   { color: #38bdf8; background: rgba(56,189,248,.12);  border: 1px solid rgba(56,189,248,.25)  }
+    .tag-opinion  { color: #a3e635; background: rgba(163,230,53,.12);  border: 1px solid rgba(163,230,53,.25)  }
+
+    /* ── Pagination ── */
+    .page-btn {
+      min-width: 40px; height: 40px; display: inline-flex;
+      align-items: center; justify-content: center;
+      border-radius: .5rem; font-size: .875rem; font-weight: 600;
+      border: 1px solid #334155; color: #94a3b8;
+      background: #1e293b; transition: all .2s; cursor: pointer
+    }
+    .page-btn:hover   { background: #F59E0B; border-color: #F59E0B; color: #0f172a }
+    .page-btn.active  { background: #F59E0B; border-color: #F59E0B; color: #0f172a; cursor: default }
+    .page-btn.ellipsis{ border-color: transparent; background: transparent; cursor: default; color: #475569 }
+    .page-btn:disabled{ opacity: .35; pointer-events: none }
+  </style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 antialiased min-h-screen">
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║                      SITE HEADER                        ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
+
+  <!-- Top bar -->
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-[60px]">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2.5" aria-label="The Pitch Home">
+        <div class="w-8 h-8 rounded bg-amber-500 flex items-center justify-center shrink-0">
+          <svg viewBox="0 0 32 32" class="w-5 h-5" aria-hidden="true">
+            <circle cx="16" cy="16" r="14" fill="#0f172a"/>
+            <path fill="white" d="M16 6 l2.5 7.5H26l-6.5 4.7 2.4 7.5L16 21l-5.9 4.7 2.4-7.5L6 13.5h7.5z"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <span class="font-oswald text-xl font-bold text-white tracking-widest uppercase block leading-none">The Pitch</span>
+          <span class="text-[10px] text-slate-500 tracking-widest uppercase hidden sm:block">Global Football Intelligence</span>
+        </div>
+      </a>
+
+      <!-- Primary nav -->
+      <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-6">
+        <a href="premier-league.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Premier League</a>
+        <a href="la-liga.html" class="text-sm text-amber-400 font-semibold border-b border-amber-400 pb-0.5">La Liga</a>
+        <a href="bundesliga.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Bundesliga</a>
+        <a href="ligue-1.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Ligue 1</a>
+        <a href="serie-a.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Serie A</a>
+        <a href="champions-league.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Champions League</a>
+        <a href="transfers.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Transfers</a>
+        <a href="world-cup-2026.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">World Cup 2026</a>
+        <a href="analysis.html" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Analysis</a>
+      </nav>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 bg-green-950/60 border border-green-800/50 rounded-full px-3 py-1">
+          <span class="pulse-dot"></span>
+          <span class="text-[11px] font-bold text-green-400 tracking-widest">LIVE</span>
+        </div>
+        <button class="md:hidden text-slate-400 hover:text-white p-1" aria-label="Open menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breaking news ticker -->
+  <div class="bg-amber-500 h-7 flex items-center overflow-hidden">
+    <span class="bg-slate-900 text-amber-400 text-[10px] font-black tracking-widest uppercase px-3 h-full flex items-center shrink-0 font-oswald border-r border-amber-600">Breaking</span>
+    <div class="flex-1 overflow-hidden">
+      <div class="ticker-inner text-slate-900 text-xs font-semibold">
+          <span class="mx-4">⚡️</span>
+          <a href="alaba-transfer.html" class="hover:underline font-medium">END OF AN ERA: David Alaba to exit Real Madrid</a> 
+          <span class="mx-4">•</span> 
+          <a href="guardiola-exit.html" class="hover:underline font-medium">THE SAUDI PURSUIT: Pep Guardiola's Agent Reveals Al-Nassr Contact</a> 
+          <span class="mx-4">•</span> 
+          <a href="enrique-psg-future.html" class="hover:underline font-medium">THE 2030 DEADLINE: Luis Enrique Maps Out PSG Retirement</a>
+          <span class="mx-4">•</span> 
+          <a href="nubel-transfer.html" class="hover:underline font-medium">GOALKEEPER MERRY-GO-ROUND: Bayern Munich to Cash In on Alexander Nübel</a>
+        </div>
+    </div>
+  </div>
+
+</header>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║              BREADCRUMB NAVIGATION                       ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="bg-slate-950/60 border-b border-slate-800/60">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-2.5">
+    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500">
+      <a href="index.html" class="hover:text-amber-400 transition-colors">Home</a>
+      <svg class="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+      </svg>
+      <span class="text-amber-400 font-medium" aria-current="page">La Liga</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║                LA LIGA FULL TABLE MAIN                   ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<main class="max-w-screen-xl mx-auto px-4 lg:px-8 py-8 min-h-screen">
+  <div class="mb-8 border-b border-slate-700 pb-4">
+    <h1 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight font-oswald">La Liga Table</h1>
+    <p class="text-slate-400 mt-2">Full standings for the 2025/26 season - Matchweek 37.</p>
+  </div>
+
+  <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-lg overflow-x-auto reveal">
+    <table class="w-full text-sm text-left text-slate-300 min-w-[800px]">
+      <thead class="text-xs text-slate-400 uppercase bg-slate-900/80">
+        <tr>
+          <th scope="col" class="px-4 py-4">Pos</th>
+          <th scope="col" class="px-4 py-4">Club</th>
+          <th scope="col" class="px-4 py-4 text-center">Played</th>
+          <th scope="col" class="px-4 py-4 text-center">Won</th>
+          <th scope="col" class="px-4 py-4 text-center">Drawn</th>
+          <th scope="col" class="px-4 py-4 text-center">Lost</th>
+          <th scope="col" class="px-4 py-4 text-center">GF</th>
+          <th scope="col" class="px-4 py-4 text-center">GA</th>
+          <th scope="col" class="px-4 py-4 text-center">GD</th>
+          <th scope="col" class="px-4 py-4 text-center font-bold text-white">Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Positions 1-4: Champions League (emerald) -->
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-emerald-400 border-l-4 border-emerald-400">1</td>
+          <td class="px-4 py-3 font-bold text-white">Real Madrid</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">28</td><td class="px-4 py-3 text-center">6</td><td class="px-4 py-3 text-center">3</td><td class="px-4 py-3 text-center">87</td><td class="px-4 py-3 text-center">24</td><td class="px-4 py-3 text-center">+63</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">90</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-emerald-400 border-l-4 border-emerald-400">2</td>
+          <td class="px-4 py-3 font-bold text-white">Barcelona</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">26</td><td class="px-4 py-3 text-center">7</td><td class="px-4 py-3 text-center">4</td><td class="px-4 py-3 text-center">81</td><td class="px-4 py-3 text-center">38</td><td class="px-4 py-3 text-center">+43</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">85</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-emerald-400 border-l-4 border-emerald-400">3</td>
+          <td class="px-4 py-3 font-bold text-white">Girona</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">24</td><td class="px-4 py-3 text-center">7</td><td class="px-4 py-3 text-center">6</td><td class="px-4 py-3 text-center">78</td><td class="px-4 py-3 text-center">44</td><td class="px-4 py-3 text-center">+34</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">79</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-emerald-400 border-l-4 border-emerald-400">4</td>
+          <td class="px-4 py-3 font-bold text-white">Atlético Madrid</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">22</td><td class="px-4 py-3 text-center">7</td><td class="px-4 py-3 text-center">8</td><td class="px-4 py-3 text-center">68</td><td class="px-4 py-3 text-center">41</td><td class="px-4 py-3 text-center">+27</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">73</td>
+        </tr>
+
+        <!-- Positions 5-6: Europa League (orange) -->
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-orange-400 border-l-4 border-orange-400">5</td>
+          <td class="px-4 py-3 font-bold text-white">Athletic Club</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">19</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">7</td><td class="px-4 py-3 text-center">60</td><td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">+23</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">68</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-orange-400 border-l-4 border-orange-400">6</td>
+          <td class="px-4 py-3 font-bold text-white">Real Sociedad</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">16</td><td class="px-4 py-3 text-center">12</td><td class="px-4 py-3 text-center">9</td><td class="px-4 py-3 text-center">51</td><td class="px-4 py-3 text-center">38</td><td class="px-4 py-3 text-center">+13</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">60</td>
+        </tr>
+
+        <!-- Mid-table (slate/transparent borders) -->
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">7</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Real Betis</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">15</td><td class="px-4 py-3 text-center">12</td><td class="px-4 py-3 text-center">10</td><td class="px-4 py-3 text-center">48</td><td class="px-4 py-3 text-center">43</td><td class="px-4 py-3 text-center">+5</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">57</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">8</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Villarreal</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">14</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">12</td><td class="px-4 py-3 text-center">60</td><td class="px-4 py-3 text-center">60</td><td class="px-4 py-3 text-center">0</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">53</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">9</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Valencia</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">13</td><td class="px-4 py-3 text-center">10</td><td class="px-4 py-3 text-center">14</td><td class="px-4 py-3 text-center">40</td><td class="px-4 py-3 text-center">42</td><td class="px-4 py-3 text-center">-2</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">49</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">10</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Getafe</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">12</td><td class="px-4 py-3 text-center">14</td><td class="px-4 py-3 text-center">41</td><td class="px-4 py-3 text-center">48</td><td class="px-4 py-3 text-center">-7</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">45</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">11</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Osasuna</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">15</td><td class="px-4 py-3 text-center">43</td><td class="px-4 py-3 text-center">53</td><td class="px-4 py-3 text-center">-10</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">44</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">12</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Alavés</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">9</td><td class="px-4 py-3 text-center">17</td><td class="px-4 py-3 text-center">35</td><td class="px-4 py-3 text-center">45</td><td class="px-4 py-3 text-center">-10</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">42</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">13</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Sevilla</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">10</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">16</td><td class="px-4 py-3 text-center">47</td><td class="px-4 py-3 text-center">52</td><td class="px-4 py-3 text-center">-5</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">41</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">14</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Las Palmas</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">10</td><td class="px-4 py-3 text-center">9</td><td class="px-4 py-3 text-center">18</td><td class="px-4 py-3 text-center">32</td><td class="px-4 py-3 text-center">46</td><td class="px-4 py-3 text-center">-14</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">39</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">15</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Mallorca</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">8</td><td class="px-4 py-3 text-center">13</td><td class="px-4 py-3 text-center">16</td><td class="px-4 py-3 text-center">31</td><td class="px-4 py-3 text-center">43</td><td class="px-4 py-3 text-center">-12</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">37</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">16</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Celta Vigo</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">9</td><td class="px-4 py-3 text-center">10</td><td class="px-4 py-3 text-center">18</td><td class="px-4 py-3 text-center">42</td><td class="px-4 py-3 text-center">55</td><td class="px-4 py-3 text-center">-13</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">37</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-slate-400 border-l-4 border-transparent">17</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Rayo Vallecano</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">8</td><td class="px-4 py-3 text-center">11</td><td class="px-4 py-3 text-center">18</td><td class="px-4 py-3 text-center">29</td><td class="px-4 py-3 text-center">47</td><td class="px-4 py-3 text-center">-18</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">35</td>
+        </tr>
+
+        <!-- Positions 18-20: Relegation (red) -->
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-red-400 border-l-4 border-red-500">18</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Cádiz</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">6</td><td class="px-4 py-3 text-center">12</td><td class="px-4 py-3 text-center">19</td><td class="px-4 py-3 text-center">25</td><td class="px-4 py-3 text-center">52</td><td class="px-4 py-3 text-center">-27</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">30</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-red-400 border-l-4 border-red-500">19</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Granada</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">4</td><td class="px-4 py-3 text-center">9</td><td class="px-4 py-3 text-center">24</td><td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">72</td><td class="px-4 py-3 text-center">-35</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">21</td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+          <td class="px-4 py-3 font-bold text-red-400 border-l-4 border-red-500">20</td>
+          <td class="px-4 py-3 font-medium text-slate-300">Almería</td>
+          <td class="px-4 py-3 text-center">37</td><td class="px-4 py-3 text-center">2</td><td class="px-4 py-3 text-center">12</td><td class="px-4 py-3 text-center">23</td><td class="px-4 py-3 text-center">41</td><td class="px-4 py-3 text-center">73</td><td class="px-4 py-3 text-center">-32</td>
+          <td class="px-4 py-3 text-center font-bold text-white text-base">18</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║                      SITE FOOTER                         ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<footer class="bg-slate-950 border-t border-slate-800 mt-4" itemscope itemtype="https://schema.org/WPFooter">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-7 h-7 rounded bg-amber-500 flex items-center justify-center shrink-0">
+            <svg viewBox="0 0 32 32" class="w-4 h-4" aria-hidden="true">
+              <circle cx="16" cy="16" r="14" fill="#0f172a"/>
+              <path fill="white" d="M16 6 l2.5 7.5H26l-6.5 4.7 2.4 7.5L16 21l-5.9 4.7 2.4-7.5L6 13.5h7.5z"/>
+            </svg>
+          </div>
+          <span class="font-oswald text-lg font-bold text-white tracking-widest uppercase">The Pitch</span>
+        </div>
+        <p class="text-slate-500 text-xs leading-relaxed mb-4">
+          Trusted global football intelligence. Premium analysis, live data, and journalism that respects the beautiful game.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" aria-label="Twitter / X" class="text-slate-600 hover:text-amber-400 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="text-slate-600 hover:text-amber-400 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="text-slate-600 hover:text-amber-400 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Leagues -->
+      <div>
+        <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Leagues</h2>
+        <ul class="space-y-2">
+          <li><a href="premier-league.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Premier League</a></li>
+          <li><a href="la-liga.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">La Liga</a></li>
+          <li><a href="bundesliga.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Bundesliga</a></li>
+          <li><a href="serie-a.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Serie A</a></li>
+          <li><a href="ligue-1.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Ligue 1</a></li>
+          <li><a href="champions-league.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Champions League</a></li>
+          <li><a href="world-cup-2026.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">World Cup 2026</a></li>
+        </ul>
+      </div>
+
+      <!-- Topics -->
+      <div>
+        <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Topics</h2>
+        <ul class="space-y-2">
+          <li><a href="transfers.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Transfer News</a></li>
+          <li><a href="analysis.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Match Analysis</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Injury Updates</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Manager Watch</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Fantasy Football</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Women's Football</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Company</h2>
+        <ul class="space-y-2">
+          <li><a href="about.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">About Us</a></li>
+          <li><a href="contact.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Contact Us</a></li>
+          <li><a href="privacy.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="terms.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Terms of Service</a></li>
+          <li><a href="cookies.html" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Cookie Policy</a></li>
+          <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Advertise With Us</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-600">© 2026 The Pitch. All rights reserved. For football fans, by football fans.</p>
+      <p class="text-xs text-slate-700">Live data powered by API-Football · Design: The Pitch Studio</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║                   VANILLA JAVASCRIPT                     ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<script>
+'use strict';
+
+/* ─── Filter tabs ──────────────────────────────────────────── */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active-filter', 'bg-amber-500', 'text-slate-900', 'border-amber-500');
+      b.classList.add('bg-slate-800', 'text-slate-400', 'border-slate-700');
+    });
+    btn.classList.add('active-filter', 'bg-amber-500', 'text-slate-900', 'border-amber-500');
+    btn.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-700');
+  });
+});
+
+/* ─── Pagination: update active state on click ─────────────── */
+document.querySelectorAll('.page-btn:not(.ellipsis):not([disabled])').forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    if (this.tagName === 'A') return; // let real hrefs navigate
+    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    this.setAttribute('aria-current', 'page');
+  });
+});
+</script>
+</body>
+</html>
