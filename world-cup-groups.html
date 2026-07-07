@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!--
-    ════════════════════════════════════════════════════════════
-    SEO: Update these four tags for every category page clone.
-    ════════════════════════════════════════════════════════════
-  -->
-  <title>World Cup 2026 Standings & Groups | Govolsgo</title>
-  <meta name="description" content="Live World Cup 2026 group standings! Track every team's path to the knockout stages with our exclusive group tracker. See the standings now.">
-  <meta name="keywords"
-    content="World Cup news, World Cup transfers, World Cup analysis, FIFA World Cup 2026, USA, Canada, Mexico, World Cup draw, groups">
+  <title>World Cup 2026 Hub: Live Knockouts & Standings | Govolsgo</title>
+  <meta name="description" content="Live World Cup 2026 Tournament Hub! Track Round of 16 results, live bracket progression, and comprehensive group standings for all 12 groups.">
+  <meta name="keywords" content="World Cup 2026, FIFA World Cup, World Cup bracket, World Cup standings, World Cup groups, live scores, football news">
   <link rel="canonical" href="https://www.govolsgo.com/world-cup-groups">
   <link rel="icon" type="image/webp" href="/favicon.webp">
   <link rel="apple-touch-icon" href="/favicon.webp">
@@ -22,13 +14,12 @@
   <meta name="author" content="Govolsgo Editorial Team">
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="FIFA World Cup 2026 Groups & Draw | Full List">
-  <meta property="og:description"
-    content="View the complete official group stage draw for the 2026 FIFA World Cup in USA, Canada, and Mexico. All 12 groups from A to L.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&q=80">
+  <meta property="og:title" content="FIFA World Cup 2026 Tournament Hub | Govolsgo">
+  <meta property="og:description" content="View the complete official group stage standings and live knockout bracket for the 2026 FIFA World Cup.">
+  <meta property="og:image" content="https://www.govolsgo.com/spain-portugal-tactics.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FIFA World Cup 2026 Groups & Draw | Full List">
-  <meta name="twitter:description" content="View the complete official group stage draw for the 2026 FIFA World Cup in USA, Canada, and Mexico. All 12 groups from A to L.">
+  <meta name="twitter:title" content="FIFA World Cup 2026 Tournament Hub">
+  <meta name="twitter:description" content="View the complete official group stage standings and live knockout bracket for the 2026 FIFA World Cup.">
 
   <!-- Structured Data: BreadcrumbList + CollectionPage -->
   <script type="application/ld+json">
@@ -44,8 +35,8 @@
       },
       {
         "@type": "CollectionPage",
-        "name": "FIFA World Cup 2026 Groups",
-        "description": "The complete official 48-team group stage draw for the 2026 FIFA World Cup.",
+        "name": "FIFA World Cup 2026 Groups & Knockouts",
+        "description": "The complete official 48-team group stage standings and live bracket for the 2026 FIFA World Cup.",
         "url": "https://www.govolsgo.com/world-cup-groups",
         "publisher": { "@type": "Organization", "name": "Govolsgo", "url": "https://govolsgo.com" }
       }
@@ -56,14 +47,12 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts — identical to index.html -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind custom config — mirrors index.html exactly -->
+  <!-- Tailwind custom config -->
   <script>
     tailwind.config = {
       theme: {
@@ -82,9 +71,10 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box }
+    html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif }
 
-    /* ── Pulse dot (header LIVE badge) ── */
+    /* Pulse dot */
     .pulse-dot {
       display: inline-block; width: 8px; height: 8px;
       border-radius: 50%; background: #22C55E;
@@ -95,7 +85,7 @@
       50%       { opacity: .25; transform: scale(.7) }
     }
 
-    /* ── Breaking ticker ── */
+    /* Breaking ticker */
     @keyframes ticker-slide {
       0%   { transform: translateX(100vw) }
       100% { transform: translateX(-100%) }
@@ -105,40 +95,15 @@
       white-space: nowrap; display: inline-block
     }
 
-    /* ── Section bar accent ── */
-    .section-bar { border-left: 3px solid #F59E0B; padding-left: 10px }
-
-    /* ── Category hero gradient ── */
-    .cat-hero-gradient {
-      background: linear-gradient(135deg, rgba(245,158,11,.14) 0%, rgba(30,41,59,0) 60%)
-    }
-
-    /* ── Tag chip colours ── */
-    .tag-pl       { color: #a78bfa; background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.25) }
-    .tag-ucl      { color: #60a5fa; background: rgba(96,165,250,.12);  border: 1px solid rgba(96,165,250,.25)  }
-    .tag-wc       { color: #34d399; background: rgba(52,211,153,.12);  border: 1px solid rgba(52,211,153,.25)  }
-    .tag-laliga   { color: #f87171; background: rgba(248,113,113,.12); border: 1px solid rgba(248,113,113,.25) }
-    .tag-analysis { color: #FBBF24; background: rgba(251,191,36,.12);  border: 1px solid rgba(251,191,36,.25)  }
-    .tag-transfer { color: #fb923c; background: rgba(251,146,60,.12);  border: 1px solid rgba(251,146,60,.25)  }
-    .tag-report   { color: #38bdf8; background: rgba(56,189,248,.12);  border: 1px solid rgba(56,189,248,.25)  }
-    .tag-opinion  { color: #a3e635; background: rgba(163,230,53,.12);  border: 1px solid rgba(163,230,53,.25)  }
-    .tag-bundesliga{ color: #4ade80; background: rgba(74,222,128,.12); border: 1px solid rgba(74,222,128,.25)  }
-
-    /* ── Shimmer (kept for consistency) ── */
-    .shimmer {
-      background: linear-gradient(90deg, #1e293b 25%, #273548 50%, #1e293b 75%);
-      background-size: 400% 100%; animation: shimmer-anim 1.4s infinite
-    }
-    @keyframes shimmer-anim {
-      0%   { background-position: 100% 50% }
-      100% { background-position:   0% 50% }
-    }
-  
     .site-logo {
       height: 48px;
       width: auto;
       background: transparent;
       object-fit: contain;
+    }
+
+    .bracket-line {
+      border-color: rgba(51, 65, 85, 0.4);
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -151,25 +116,14 @@
     gtag('config', 'G-29V2H5RTQF');
   </script>
 </head>
-
 <body class="bg-slate-900 text-slate-200 antialiased min-h-screen">
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║                      SITE HEADER                        ║
-     ║  Identical to index.html — copy-paste safe              ║
-     ╚══════════════════════════════════════════════════════════╝ -->
 <header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
-
-  <!-- Top bar -->
   <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
     <div class="flex items-center justify-between h-[60px]">
-
-      <!-- Logo -->
       <a href="/" class="flex items-center" aria-label="Govolsgo Home">
-          <img src="/GOVOLSGO Premium .webp" alt="Govolsgo Logo" class="site-logo">
-        </a>
-
-      <!-- Primary nav -->
+        <img src="/GOVOLSGO Premium .webp" alt="Govolsgo Logo" class="site-logo">
+      </a>
       <nav aria-label="Primary navigation" class="hidden md:flex items-center gap-6">
         <a href="/premier-league" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Premier League</a>
         <a href="/la-liga" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">La Liga</a>
@@ -178,206 +132,1053 @@
         <a href="/serie-a" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Serie A</a>
         <a href="/champions-league" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Champions League</a>
         <a href="/transfers" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Transfers</a>
-        <a href="/world-cup-2026" class="text-sm text-amber-400 font-semibold border-b border-amber-400 pb-0.5">World Cup 2026</a>
+        <a href="#knockouts" class="text-sm text-amber-400 font-semibold border-b border-amber-400 pb-0.5">World Cup 2026</a>
         <a href="/analysis" class="text-sm text-slate-400 hover:text-amber-400 transition-colors font-medium">Analysis</a>
       </nav>
-
-      <!-- Right controls -->
       <div class="flex items-center gap-3">
         <div class="flex items-center gap-1.5 bg-green-950/60 border border-green-800/50 rounded-full px-3 py-1">
           <span class="pulse-dot"></span>
           <span class="text-[11px] font-bold text-green-400 tracking-widest">LIVE</span>
         </div>
-        <button class="md:hidden text-slate-400 hover:text-white p-1" aria-label="Open menu">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
       </div>
     </div>
   </div>
-
-  <!-- Breaking news ticker -->
   <div class="bg-amber-500 h-7 flex items-center overflow-hidden">
     <span class="bg-slate-900 text-amber-400 text-[10px] font-black tracking-widest uppercase px-3 h-full flex items-center shrink-0 font-oswald border-r border-amber-600">Breaking</span>
     <div class="flex-1 overflow-hidden">
       <div class="ticker-inner text-slate-900 text-xs font-semibold">
-          <span class="mx-4">⚡️</span>
-          <a href="/alaba-transfer" class="hover:underline font-medium">END OF AN ERA: David Alaba to exit Real Madrid</a> 
-          <span class="mx-4">•</span> 
-          <a href="/guardiola-exit" class="hover:underline font-medium">THE SAUDI PURSUIT: Pep Guardiola's Agent Reveals Al-Nassr Contact</a> 
-          <span class="mx-4">•</span> 
-          <a href="/enrique-psg-future" class="hover:underline font-medium">THE 2030 DEADLINE: Luis Enrique Maps Out PSG Retirement</a>
-          <span class="mx-4">•</span> 
-          <a href="/nubel-transfer" class="hover:underline font-medium">GOALKEEPER MERRY-GO-ROUND: Bayern Munich to Cash In on Alexander Nübel</a>
-        </div>
+        🚨 BREAKING WORLD CUP: USA 1-3 Belgium (63') - De Ketelaere double puts Belgium in control!  •  UP NEXT TODAY: Argentina vs Egypt &amp; Switzerland vs Colombia  •  YESTERDAY: Spain 1-0 Portugal | England 3-2 Mexico
+      </div>
     </div>
   </div>
-
 </header>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║              BREADCRUMB NAVIGATION                       ║
-     ╚══════════════════════════════════════════════════════════╝ -->
 <div class="bg-slate-950/60 border-b border-slate-800/60">
   <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-2.5">
     <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500">
       <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
-      <svg class="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-      </svg>
+      <svg class="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       <a href="/world-cup-2026" class="hover:text-amber-400 transition-colors">World Cup 2026</a>
-      <svg class="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-      </svg>
-      <span class="text-amber-400 font-medium" aria-current="page">Groups</span>
+      <svg class="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      <span class="text-amber-400 font-medium" aria-current="page">Bracket & Standings</span>
     </nav>
   </div>
 </div>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║                   MAIN CONTENT                           ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<main class="max-w-screen-xl mx-auto px-4 lg:px-8 py-8 min-h-screen">
-  <div class="mb-8 border-b border-slate-700 pb-4">
-    <h1 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight font-oswald">World Cup 2026 Groups</h1>
-    <p class="text-slate-400 mt-2">The complete 48-team group stage draw for USA, Canada & Mexico.</p>
-  </div>
+<main class="max-w-screen-xl mx-auto px-4 lg:px-8 py-8 md:py-12">
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 reveal">
-    
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-emerald-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group A <span class="text-[10px] text-emerald-500 border border-emerald-500/30 bg-emerald-500/10 px-1 rounded ml-1">HOST</span></h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇲🇽 Mexico</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇵🇱 Poland</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇪🇬 Egypt</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇳🇿 New Zealand</div>
+  <!-- ==================== KNOCKOUT BRACKET SECTION ==================== -->
+  <section id="knockouts" class="mb-16 scroll-mt-24">
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-850 pb-5 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          <span class="text-amber-400 text-xs font-bold uppercase tracking-widest font-oswald">Final Phase</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-black text-white font-oswald uppercase tracking-tight">Knockout Stage Bracket</h1>
+        <p class="text-slate-400 text-sm mt-1">Real-time match progression paths and live scores from the Round of 16 and Quarterfinals.</p>
+      </div>
+      <div class="mt-4 md:mt-0 flex gap-2">
+        <span class="bg-red-500/10 text-red-400 border border-red-500/20 text-[10px] font-bold uppercase px-3 py-1 rounded-full flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>1 Live Match</span>
+        <span class="bg-slate-800 text-slate-300 text-[10px] font-bold uppercase px-3 py-1 rounded-full">July 7, 2026</span>
       </div>
     </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-emerald-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group B <span class="text-[10px] text-emerald-500 border border-emerald-500/30 bg-emerald-500/10 px-1 rounded ml-1">HOST</span></h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇺🇸 USA</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇩🇪 Germany</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇳🇬 Nigeria</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇯🇵 Japan</div>
+    <!-- Bracket grid container -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-stretch relative">
+      
+      <!-- Column 1: Round of 16 (Left Side / Upper Bracket) -->
+      <div class="lg:col-span-6 space-y-6">
+        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest border-l-2 border-emerald-500 pl-2.5 mb-4">Round of 16 Matches</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <!-- Match 1 Card -->
+          <div class="bg-slate-950/40 rounded-xl border border-slate-800 p-4 flex flex-col justify-between hover:border-slate-700 transition">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Match 1 &middot; FT</span>
+              <span class="text-[10px] bg-slate-800 text-emerald-400 font-bold px-2 py-0.5 rounded uppercase">Spain Adv.</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-white flex items-center gap-1.5">🇪🇸 Spain</span>
+                <span class="text-sm font-bold text-white font-oswald">1</span>
+              </div>
+              <div class="flex justify-between items-center opacity-60">
+                <span class="text-sm font-medium text-slate-300 flex items-center gap-1.5">🇵🇹 Portugal</span>
+                <span class="text-sm font-medium text-slate-300 font-oswald">0</span>
+              </div>
+            </div>
+            <div class="border-t border-slate-900/60 mt-3 pt-2 text-[10px] text-slate-500">
+              Spain advances to play winner of <strong class="text-slate-400">USA/Belgium</strong>
+            </div>
+          </div>
+
+          <!-- Match 3 Card (LIVE) -->
+          <div class="bg-slate-950/40 rounded-xl border border-red-500/25 p-4 flex flex-col justify-between hover:border-red-500/40 transition relative overflow-hidden">
+            <div class="absolute top-0 inset-x-0 h-[2px] bg-red-500"></div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-[10px] text-red-500 font-bold uppercase tracking-wider flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>Live 63'</span>
+              <span class="text-[10px] bg-red-500/10 text-red-400 font-bold px-2 py-0.5 rounded uppercase tracking-wider">R16</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-medium text-slate-300 flex items-center gap-1.5">🇺🇸 USA</span>
+                <span class="text-sm font-bold text-slate-300 font-oswald">1</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-white flex items-center gap-1.5">🇧🇪 Belgium</span>
+                <span class="text-sm font-bold text-white font-oswald">3</span>
+              </div>
+            </div>
+            <div class="border-t border-slate-900/60 mt-3 pt-2 text-[10px] text-slate-500">
+              Winner will face <strong class="text-slate-400">Spain</strong> in Quarterfinals
+            </div>
+          </div>
+
+          <!-- Match 2 Card -->
+          <div class="bg-slate-950/40 rounded-xl border border-slate-800 p-4 flex flex-col justify-between hover:border-slate-700 transition">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Match 2 &middot; FT</span>
+              <span class="text-[10px] bg-slate-800 text-emerald-400 font-bold px-2 py-0.5 rounded uppercase">England Adv.</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-white flex items-center gap-1.5">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+                <span class="text-sm font-bold text-white font-oswald">3</span>
+              </div>
+              <div class="flex justify-between items-center opacity-60">
+                <span class="text-sm font-medium text-slate-300 flex items-center gap-1.5">🇲🇽 Mexico</span>
+                <span class="text-sm font-medium text-slate-300 font-oswald">2</span>
+              </div>
+            </div>
+            <div class="border-t border-slate-900/60 mt-3 pt-2 text-[10px] text-slate-500">
+              England advances to play winner of <strong class="text-slate-400">Argentina/Egypt</strong>
+            </div>
+          </div>
+
+          <!-- Match 4 Card (UPCOMING) -->
+          <div class="bg-slate-950/40 rounded-xl border border-slate-850 p-4 flex flex-col justify-between hover:border-slate-850 transition">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Match 4 &middot; Today 18:00</span>
+              <span class="text-[10px] bg-amber-500/10 text-amber-500 font-bold px-2 py-0.5 rounded uppercase">Upcoming</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-slate-300 flex items-center gap-1.5">🇦🇷 Argentina</span>
+                <span class="text-sm font-medium text-slate-500 font-oswald">&mdash;</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-slate-300 flex items-center gap-1.5">🇪🇬 Egypt</span>
+                <span class="text-sm font-medium text-slate-500 font-oswald">&mdash;</span>
+              </div>
+            </div>
+            <div class="border-t border-slate-900/60 mt-3 pt-2 text-[10px] text-slate-500">
+              Winner will face <strong class="text-slate-400">England</strong> in Quarterfinals
+            </div>
+          </div>
+
+          <!-- Match 5 Card (UPCOMING) -->
+          <div class="bg-slate-950/40 rounded-xl border border-slate-850 p-4 flex flex-col justify-between hover:border-slate-850 transition">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Match 5 &middot; Today 21:00</span>
+              <span class="text-[10px] bg-amber-500/10 text-amber-500 font-bold px-2 py-0.5 rounded uppercase">Upcoming</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-slate-300 flex items-center gap-1.5">🇨🇭 Switzerland</span>
+                <span class="text-sm font-medium text-slate-500 font-oswald">&mdash;</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-slate-300 flex items-center gap-1.5">🇨🇴 Colombia</span>
+                <span class="text-sm font-medium text-slate-500 font-oswald">&mdash;</span>
+              </div>
+            </div>
+            <div class="border-t border-slate-900/60 mt-3 pt-2 text-[10px] text-slate-500">
+              Winner will face <strong class="text-slate-400">France or Uruguay</strong> in Quarterfinals
+            </div>
+          </div>
+
+          <!-- Mock Match 6 Card -->
+          <div class="bg-slate-950/40 rounded-xl border border-slate-850 p-4 flex flex-col justify-between hover:border-slate-850 transition opacity-70">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Match 6 &middot; Tomorrow 18:00</span>
+              <span class="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded uppercase">Upcoming</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-medium text-slate-300 flex items-center gap-1.5">🇫🇷 France</span>
+                <span class="text-sm font-medium text-slate-500 font-oswald">&mdash;</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-medium text-slate-300 flex items-center gap-1.5">🇺🇾 Uruguay</span>
+                <span class="text-sm font-medium text-slate-500 font-oswald">&mdash;</span>
+              </div>
+            </div>
+            <div class="border-t border-slate-900/60 mt-3 pt-2 text-[10px] text-slate-500">
+              Winner will face <strong class="text-slate-400">Sui/Col</strong> in Quarterfinals
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <!-- Column 2: Quarterfinals Progression (Right Side) -->
+      <div class="lg:col-span-6 space-y-6">
+        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest border-l-2 border-amber-500 pl-2.5 mb-4">Quarterfinals Progression Paths</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+          
+          <!-- Quarterfinal Path A -->
+          <div class="bg-slate-950/60 rounded-xl border border-slate-800/80 p-5 flex flex-col justify-between h-[180px] hover:border-slate-700 transition">
+            <div>
+              <span class="text-[9px] text-amber-500 font-bold uppercase tracking-widest font-oswald">Quarterfinal 1</span>
+              <h3 class="text-base font-bold text-white font-oswald mt-1">QF 1 Matchup Path</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">The winner of <strong class="text-white">Spain (1) vs Portugal (0)</strong> will face the winner of the ongoing live fixture <strong class="text-emerald-400">USA (1) vs Belgium (3)</strong>.</p>
+            </div>
+            <div class="bg-slate-900/80 rounded-lg p-2.5 border border-slate-800 text-xs font-bold text-slate-300 flex items-center justify-between">
+              <span>🇪🇸 Spain</span>
+              <span class="text-slate-500 font-normal">vs</span>
+              <span class="text-emerald-400 flex items-center gap-1">Belgium (Pending Live FT)</span>
+            </div>
+          </div>
+
+          <!-- Quarterfinal Path B -->
+          <div class="bg-slate-950/60 rounded-xl border border-slate-800/80 p-5 flex flex-col justify-between h-[180px] hover:border-slate-700 transition">
+            <div>
+              <span class="text-[9px] text-amber-500 font-bold uppercase tracking-widest font-oswald">Quarterfinal 2</span>
+              <h3 class="text-base font-bold text-white font-oswald mt-1">QF 2 Matchup Path</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">The winner of <strong class="text-white">England (3) vs Mexico (2)</strong> advances to meet the winner of the upcoming fixture <strong class="text-white">Argentina vs Egypt</strong>.</p>
+            </div>
+            <div class="bg-slate-900/80 rounded-lg p-2.5 border border-slate-800 text-xs font-bold text-slate-300 flex items-center justify-between">
+              <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+              <span class="text-slate-500 font-normal">vs</span>
+              <span class="text-slate-400">Winner Match 4</span>
+            </div>
+          </div>
+
+          <!-- Quarterfinal Path C -->
+          <div class="bg-slate-950/60 rounded-xl border border-slate-800/80 p-5 flex flex-col justify-between h-[180px] hover:border-slate-700 transition opacity-80">
+            <div>
+              <span class="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-oswald">Quarterfinal 3</span>
+              <h3 class="text-base font-bold text-slate-300 font-oswald mt-1">QF 3 Matchup Path</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">The winner of <strong class="text-slate-400">Switzerland vs Colombia</strong> (playing today) will face the winner of tomorrow's showdown between <strong class="text-slate-400">France vs Uruguay</strong>.</p>
+            </div>
+            <div class="bg-slate-900/80 rounded-lg p-2.5 border border-slate-800 text-xs text-slate-500 flex items-center justify-between">
+              <span>Winner Match 5</span>
+              <span>vs</span>
+              <span>Winner Match 6</span>
+            </div>
+          </div>
+
+          <!-- Quarterfinal Path D -->
+          <div class="bg-slate-950/60 rounded-xl border border-slate-800/80 p-5 flex flex-col justify-between h-[180px] hover:border-slate-700 transition opacity-80">
+            <div>
+              <span class="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-oswald">Quarterfinal 4</span>
+              <h3 class="text-base font-bold text-slate-300 font-oswald mt-1">QF 4 Matchup Path</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">The winner of the mock round of 16 fixture <strong class="text-slate-400">Brazil vs Croatia</strong> will face the winner of <strong class="text-slate-400">Netherlands vs Italy</strong>.</p>
+            </div>
+            <div class="bg-slate-900/80 rounded-lg p-2.5 border border-slate-800 text-xs text-slate-500 flex items-center justify-between">
+              <span>Winner Match 7</span>
+              <span>vs</span>
+              <span>Winner Match 8</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GROUP STAGE STANDINGS ==================== -->
+  <section id="standings" class="scroll-mt-24">
+    <div class="border-b border-slate-850 pb-5 mb-8">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="tag-wc text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Final Standings</span>
+      </div>
+      <h2 class="text-3xl font-black text-white font-oswald uppercase tracking-tight">Group Stage Standings</h2>
+      <p class="text-slate-400 text-sm mt-1">Official points and standings for all 48 teams, organized in Groups A through L.</p>
     </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-emerald-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group C <span class="text-[10px] text-emerald-500 border border-emerald-500/30 bg-emerald-500/10 px-1 rounded ml-1">HOST</span></h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇦 Canada</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇸🇳 Senegal</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇪🇨 Ecuador</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇸🇦 Saudi Arabia</div>
+    <!-- Groups Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Group A -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-emerald-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group A</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇲🇽 Mexico <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+3</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇪🇬 Egypt <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">1</td>
+              <td class="text-center font-medium text-slate-400">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+1</td>
+              <td class="text-center font-bold text-emerald-400">5</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-700/50 text-slate-400 text-[10px]">&mdash;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇵🇱 Poland</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-1</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇳🇿 New Zealand</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-3</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group D</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇦🇷 Argentina</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇸🇪 Sweden</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇰🇷 South Korea</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇩🇿 Algeria</div>
+      <!-- Group B -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-emerald-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group B</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇩🇪 Germany <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+4</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇺🇸 USA <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+2</td>
+              <td class="text-center font-bold text-emerald-400">6</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇯🇵 Japan</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">1</td>
+              <td class="text-center">1</td>
+              <td class="text-center font-oswald">0</td>
+              <td class="text-center font-bold">4</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇳🇬 Nigeria</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">0</td>
+              <td class="text-center">3</td>
+              <td class="text-center font-oswald">-6</td>
+              <td class="text-center font-bold">0</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group E</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🏴 England</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇴 Colombia</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇮 Ivory Coast</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇦🇺 Australia</div>
+      <!-- Group C -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-emerald-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group C</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇨🇦 Canada <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+3</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-700/50 text-slate-400 text-[10px]">&mdash;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇸🇳 Senegal <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">1</td>
+              <td class="text-center font-medium text-slate-400">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+1</td>
+              <td class="text-center font-bold text-emerald-400">5</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-700/50 text-slate-400 text-[10px]">&mdash;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇪🇨 Ecuador</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-1</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇸🇦 Saudi Arabia</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-3</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group F</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇫🇷 France</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇺🇾 Uruguay</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇮🇷 Iran</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇲🇱 Mali</div>
+      <!-- Group D -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group D</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇦🇷 Argentina <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+4</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇸🇪 Sweden <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">1</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">0</td>
+              <td class="text-center font-bold text-slate-300">4</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-700/50 text-slate-400 text-[10px]">&mdash;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇰🇷 South Korea</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-1</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇩🇿 Algeria</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center">1</td>
+              <td class="text-center font-oswald">-3</td>
+              <td class="text-center font-bold">2</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group G</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇪🇸 Spain</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇲🇦 Morocco</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇵🇾 Paraguay</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇳 China</div>
+      <!-- Group E -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group E</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+5</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇨🇴 Colombia <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+2</td>
+              <td class="text-center font-bold text-emerald-400">6</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇨🇮 Ivory Coast</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-2</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇦🇺 Australia</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-5</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group H</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇧🇷 Brazil</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇭🇷 Croatia</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇬🇭 Ghana</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇶🇦 Qatar</div>
+      <!-- Group F -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group F</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇫🇷 France <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">3</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+6</td>
+              <td class="text-center font-bold text-emerald-400">9</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇺🇾 Uruguay <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+3</td>
+              <td class="text-center font-bold text-emerald-400">6</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇲🇱 Mali</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-3</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇮🇷 Iran</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">0</td>
+              <td class="text-center">3</td>
+              <td class="text-center font-oswald">-6</td>
+              <td class="text-center font-bold">0</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group I</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇵🇹 Portugal</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇭 Switzerland</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇲 Cameroon</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇷 Costa Rica</div>
+      <!-- Group G -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group G</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇪🇸 Spain <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+5</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇲🇦 Morocco <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+2</td>
+              <td class="text-center font-bold text-emerald-400">6</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇵🇾 Paraguay</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-2</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇨🇳 China</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-5</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group J</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇳🇱 Netherlands</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇨🇱 Chile</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇿🇦 South Africa</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇺🇿 Uzbekistan</div>
+      <!-- Group H -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group H</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇧🇷 Brazil <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+3</td>
+              <td class="text-center font-bold text-emerald-400">6</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇭🇷 Croatia <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">1</td>
+              <td class="text-center font-medium text-slate-400">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+1</td>
+              <td class="text-center font-bold text-emerald-400">5</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-700/50 text-slate-400 text-[10px]">&mdash;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇬🇭 Ghana</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">1</td>
+              <td class="text-center">1</td>
+              <td class="text-center font-oswald">0</td>
+              <td class="text-center font-bold">4</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇶🇦 Qatar</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-4</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group K</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇮🇹 Italy</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇵🇪 Peru</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇹🇳 Tunisia</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇭🇳 Honduras</div>
+      <!-- Group I -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group I</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇨🇭 Switzerland <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+3</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇵🇹 Portugal <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+2</td>
+              <td class="text-center font-bold text-emerald-400">6</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇨🇲 Cameroon</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-1</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇨🇷 Costa Rica</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-4</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="bg-slate-800/80 rounded-xl border border-slate-700/50 p-4 shadow-lg">
-      <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 rounded-full bg-slate-500"></span><h3 class="text-sm font-bold text-white uppercase tracking-wider">Group L</h3></div>
-      <div class="space-y-2 text-sm font-medium text-slate-300">
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇧🇪 Belgium</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇮🇶 Iraq</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇷🇸 Serbia</div>
-        <div class="flex items-center gap-2 bg-slate-900/50 p-2 rounded">🇵🇦 Panama</div>
+      <!-- Group J -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group J</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇳🇱 Netherlands <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+4</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇨🇱 Chile <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">1</td>
+              <td class="text-center font-medium text-slate-400">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+1</td>
+              <td class="text-center font-bold text-emerald-400">5</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-700/50 text-slate-400 text-[10px]">&mdash;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇿🇦 South Africa</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-1</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇺🇿 Uzbekistan</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-4</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-  </div>
+      <!-- Group K -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group K</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇮🇹 Italy <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+3</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇵🇪 Peru <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">1</td>
+              <td class="text-center font-medium text-slate-400">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+1</td>
+              <td class="text-center font-bold text-emerald-400">5</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-700/50 text-slate-400 text-[10px]">&mdash;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇹🇳 Tunisia</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-1</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇭🇳 Honduras</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-3</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Group L -->
+      <div class="bg-slate-950/30 rounded-xl border border-slate-800/80 p-4 hover:border-slate-700 transition">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1.5 h-4 bg-slate-500 rounded"></span>
+          <h3 class="font-oswald font-bold text-white uppercase text-base tracking-wider">Group L</h3>
+        </div>
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="text-slate-500 border-b border-slate-850 uppercase text-[9px] font-bold">
+              <th class="pb-2">Team</th>
+              <th class="pb-2 text-center">Pld</th>
+              <th class="pb-2 text-center font-bold text-slate-400">W</th>
+              <th class="pb-2 text-center">D</th>
+              <th class="pb-2 text-center">L</th>
+              <th class="pb-2 text-center">GD</th>
+              <th class="pb-2 text-center font-bold text-white">Pts</th>
+              <th class="pb-2 text-right">Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-900/60 font-bold text-white">
+              <td class="py-2.5 flex items-center gap-1.5">🇧🇪 Belgium <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+4</td>
+              <td class="text-center font-bold text-emerald-400">7</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 font-semibold text-slate-200">
+              <td class="py-2.5 flex items-center gap-1.5">🇷🇸 Serbia <span class="text-[8px] text-emerald-500">Q</span></td>
+              <td class="text-center font-medium text-slate-400">3</td>
+              <td class="text-center font-medium text-slate-300">2</td>
+              <td class="text-center font-medium text-slate-400">0</td>
+              <td class="text-center font-medium text-slate-400">1</td>
+              <td class="text-center font-medium text-slate-400 font-oswald">+2</td>
+              <td class="text-center font-bold text-emerald-400">6</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+            <tr class="border-b border-slate-900/60 opacity-60 text-slate-300">
+              <td class="py-2.5">🇮🇶 Iraq</td>
+              <td class="text-center">3</td>
+              <td class="text-center">1</td>
+              <td class="text-center">0</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-2</td>
+              <td class="text-center font-bold">3</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-[10px]">&#x2714;</span></td>
+            </tr>
+            <tr class="opacity-60 text-slate-300">
+              <td class="py-2.5">🇵🇦 Panama</td>
+              <td class="text-center">3</td>
+              <td class="text-center">0</td>
+              <td class="text-center">1</td>
+              <td class="text-center">2</td>
+              <td class="text-center font-oswald">-4</td>
+              <td class="text-center font-bold">1</td>
+              <td class="text-right"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500/20 text-red-400 text-[10px]">&#x2718;</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
 </main>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║                      SITE FOOTER                         ║
-     ║  Identical to index.html — copy-paste safe               ║
-     ╚══════════════════════════════════════════════════════════╝ -->
-<footer class="bg-slate-950 border-t border-slate-800 mt-4" itemscope itemtype="https://schema.org/WPFooter">
+<footer class="bg-slate-950 border-t border-slate-800 mt-16" itemscope itemtype="https://schema.org/WPFooter">
   <div class="max-w-screen-xl mx-auto px-4 lg:px-8 py-12">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-
-      <!-- Brand -->
       <div class="col-span-2 md:col-span-1">
         <div class="flex items-center gap-2 mb-3">
           <div class="w-7 h-7 rounded bg-amber-500 flex items-center justify-center shrink-0">
@@ -403,8 +1204,6 @@
           </a>
         </div>
       </div>
-
-      <!-- Leagues -->
       <div>
         <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Leagues</h2>
         <ul class="space-y-2">
@@ -417,8 +1216,6 @@
           <li><a href="/world-cup-2026" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">World Cup 2026</a></li>
         </ul>
       </div>
-
-      <!-- Topics -->
       <div>
         <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Topics</h2>
         <ul class="space-y-2">
@@ -430,8 +1227,6 @@
           <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Women's Football</a></li>
         </ul>
       </div>
-
-      <!-- Company -->
       <div>
         <h2 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Company</h2>
         <ul class="space-y-2">
@@ -443,7 +1238,6 @@
           <li><a href="#" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Advertise With Us</a></li>
         </ul>
       </div>
-
     </div>
     <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="text-xs text-slate-600">© 2026 Govolsgo. All rights reserved. For football fans, by football fans.</p>
@@ -452,9 +1246,6 @@
   </div>
 </footer>
 
-<!-- ╔══════════════════════════════════════════════════════════╗
-     ║                   VANILLA JAVASCRIPT                     ║
-     ╚══════════════════════════════════════════════════════════╝ -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const observer = new IntersectionObserver((entries) => {
