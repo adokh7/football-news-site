@@ -471,43 +471,41 @@
       <!-- RIGHT COLUMN: Interactive Live Match Centre (4/12 cols) -->
       <aside class="lg:col-span-4 space-y-6" aria-label="Interactive Match Widgets">
         
-        <!-- Live Chat Simulator Widget -->
+        <!-- Live Match updates & Milestones Widget -->
         <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 flex flex-col h-[400px] shadow-2xl">
           <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
             <h3 class="font-oswald text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Stream Live Chat
+              <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Live Status Board
             </h3>
-            <span class="text-[9px] bg-slate-900 text-slate-500 border border-slate-800 rounded px-1.5 py-0.5 tabular-nums">48.2k active</span>
+            <span id="real-hit-counter" class="text-[9px] bg-slate-900 text-slate-400 border border-slate-800 rounded px-1.5 py-0.5 tabular-nums">Loading real-time data...</span>
           </div>
 
-          <!-- Chat messages area -->
-          <div id="chat-messages" class="flex-1 overflow-y-auto custom-scrollbar space-y-3 pr-1 text-xs">
-            <div class="chat-message border-b border-slate-900/60 pb-1">
-              <span class="font-bold text-amber-500">@GoalHunter:</span>
-              <span class="text-slate-300">This is going to be the match of the year! France's attack vs Morocco's wall! 💥</span>
+          <!-- Milestones chronological timeline -->
+          <div class="flex-1 overflow-y-auto custom-scrollbar space-y-4 pr-1 text-xs">
+            <div class="flex items-start gap-3 border-l-2 border-slate-800 pl-4 relative ml-1.5">
+              <span class="absolute -left-1.5 top-1.5 w-2.5 h-2.5 rounded-full bg-amber-500 border-2 border-slate-950"></span>
+              <div>
+                <span class="font-bold font-oswald text-amber-500 uppercase">22:00</span>
+                <p class="text-slate-200 font-semibold mt-0.5">Live broadcasting starts</p>
+                <p class="text-slate-500 text-[11px] mt-0.5">Satellite feeds connect. High definition player activation.</p>
+              </div>
             </div>
-            <div class="chat-message border-b border-slate-900/60 pb-1">
-              <span class="font-bold text-blue-400">@MbappeFan:</span>
-              <span class="text-slate-300">Mbappe is scoring at least twice tonight. Allez les Bleus! 🇫🇷⚽️</span>
+            <div class="flex items-start gap-3 border-l-2 border-slate-800 pl-4 relative ml-1.5">
+              <span class="absolute -left-1.5 top-1.5 w-2.5 h-2.5 rounded-full bg-slate-700 border-2 border-slate-950"></span>
+              <div>
+                <span class="font-bold font-oswald text-slate-400 uppercase">21:00</span>
+                <p class="text-slate-300 font-semibold mt-0.5">Official lineups announced</p>
+                <p class="text-slate-500 text-[11px] mt-0.5">Tactical sheets will update in the "Predicted Lineups" tab.</p>
+              </div>
             </div>
-            <div class="chat-message border-b border-slate-900/60 pb-1">
-              <span class="font-bold text-emerald-400">@MoroccoPride:</span>
-              <span class="text-slate-300">Dima Maghrib! 🇲🇦 Atlas Lions fear nothing. Let's make history again!🦁</span>
+            <div class="flex items-start gap-3 border-l-2 border-slate-800 pl-4 relative ml-1.5">
+              <span class="absolute -left-1.5 top-1.5 w-2.5 h-2.5 rounded-full bg-slate-700 border-2 border-slate-950"></span>
+              <div>
+                <span class="font-bold font-oswald text-slate-400 uppercase">18:00</span>
+                <p class="text-slate-300 font-semibold mt-0.5">Teams arrive at stadium</p>
+                <p class="text-slate-500 text-[11px] mt-0.5">Team buses pull into Al Bayt Stadium parking grounds.</p>
+              </div>
             </div>
-            <div class="chat-message border-b border-slate-900/60 pb-1">
-              <span class="font-bold text-slate-400">@FootyAnalyst:</span>
-              <span class="text-slate-300">If Aguerd is 100% fit, Morocco's defense can definitely frustrate France.</span>
-            </div>
-            <div class="chat-message border-b border-slate-900/60 pb-1">
-              <span class="font-bold text-blue-300">@AntoineG:</span>
-              <span class="text-slate-300">Don't forget Griezmann's stats this World Cup. He dictates everything.</span>
-            </div>
-          </div>
-
-          <!-- Input bar simulator -->
-          <div class="border-t border-slate-900 pt-3 mt-3 flex items-center gap-2">
-            <input id="chat-input" type="text" placeholder="Type a message..." class="flex-1 bg-slate-900 border border-slate-800 rounded px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-amber-500 transition-colors">
-            <button onclick="sendSimulatedMessage()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-2 rounded text-xs transition-colors font-oswald uppercase">Send</button>
           </div>
         </div>
 
@@ -702,59 +700,33 @@
       }
     }
 
-    /* ─── 4. LIVE CHAT SIMULATOR ────────────────────────────── */
-    const chatFeed = document.getElementById('chat-messages');
-    const fanUsers = [
-      { name: '@BleuChamp', color: 'text-blue-400', msg: 'Mbappe is going to leave Hakimi behind on that flank. 🇫🇷🏃‍♂️' },
-      { name: '@MaghribLover', color: 'text-emerald-400', msg: 'Morocco defense hasn\'t conceded to Spain or Portugal. We ready! 🦁🇲🇦' },
-      { name: '@TacticsTalk', color: 'text-slate-400', msg: 'Regragui is probably setting up a 4-5-1 mid-block.' },
-      { name: '@GiroudGoat', color: 'text-blue-300', msg: 'Giroud heading in Griezmann\'s corner, calling it now.' },
-      { name: '@YassineWall', color: 'text-emerald-300', msg: 'Bounou is saving everything today. Penalties again?' },
-      { name: '@WorldCupManiac', color: 'text-amber-400', msg: 'Who is ready for kickoff?? Best fixture of the tournament!' },
-      { name: '@Griezmann10', color: 'text-blue-400', msg: 'Antoine Griezmann is the most underrated player this year.' },
-      { name: '@MoroccanMagic', color: 'text-emerald-400', msg: 'Amrabat will dominate the midfield battle!' }
-    ];
-
-    function sendSimulatedMessage() {
-      const input = document.getElementById('chat-input');
-      if (!input || !input.value.trim()) return;
+    /* ─── 4. REAL HIT COUNTER API ───────────────────────────── */
+    (function () {
+      const counterUrl = 'https://api.counterapi.dev/v1/govolsgo/france-morocco-stream/up';
+      const counterEl = document.getElementById('real-hit-counter');
       
-      addMessage('@You', 'text-amber-500', input.value.trim());
-      input.value = '';
-    }
-
-    function addMessage(user, color, text) {
-      if (!chatFeed) return;
-      
-      const msgDiv = document.createElement('div');
-      msgDiv.className = 'chat-message border-b border-slate-900/60 pb-1 animate-fade-in';
-      msgDiv.innerHTML = `<span class="font-bold ${color}">${user}:</span> <span class="text-slate-300">${text}</span>`;
-      chatFeed.appendChild(msgDiv);
-      
-      // Auto scroll
-      chatFeed.scrollTop = chatFeed.scrollHeight;
-
-      // Keep only last 30 messages
-      if (chatFeed.children.length > 30) {
-        chatFeed.removeChild(chatFeed.firstChild);
-      }
-    }
-
-    // Trigger random chat messages every 4.5 seconds
-    setInterval(() => {
-      const randomFan = fanUsers[Math.floor(Math.random() * fanUsers.length)];
-      addMessage(randomFan.name, randomFan.color, randomFan.msg);
-    }, 4500);
-
-    // Listen to Enter key on chat input
-    const chatInput = document.getElementById('chat-input');
-    if (chatInput) {
-      chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          sendSimulatedMessage();
+      async function fetchHits() {
+        try {
+          const response = await fetch(counterUrl);
+          if (response.ok) {
+            const data = await response.json();
+            if (data && typeof data.value !== 'undefined') {
+              const count = Number(data.value).toLocaleString();
+              if (counterEl) {
+                counterEl.textContent = `${count} real people waiting for kickoff`;
+              }
+            }
+          }
+        } catch (err) {
+          console.error('Failed to increment hits API:', err);
+          if (counterEl) {
+            counterEl.textContent = 'Live updates connected';
+          }
         }
-      });
-    }
+      }
+
+      fetchHits();
+    })();
   </script>
 </body>
 
