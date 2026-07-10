@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://www.govolsgo.com/usa-belgium-recap.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Govolsgo</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-07T04:20:00Z</news:publication_date>
+      <news:title>Belgium Strike Four Past USA as Co-Hosts Bow Out in the Last 16</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.govolsgo.com/spain-portugal-tactics.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Govolsgo</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-07T03:15:00Z</news:publication_date>
+      <news:title>Spain Strike Late to Beat Portugal: Inside the 91st Minute</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.govolsgo.com/ronaldo-world-cup-passenger.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Govolsgo</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-07T00:45:00Z</news:publication_date>
+      <news:title>Tearful Ronaldo a Passenger as World Cup Dream Slips Away</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.govolsgo.com/ronaldo-world-cup-ends.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Govolsgo</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-06T23:25:00Z</news:publication_date>
+      <news:title>Ronaldo's World Cup Dream Ends: Spain 1-0 Portugal Story</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.govolsgo.com/infantino-balogun-scandal.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Govolsgo</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-07T09:40:00Z</news:publication_date>
+      <news:title>Balogun Scandal: Could One Phone Call End Infantino?</news:title>
+    </news:news>
+  </url>
+</urlset>
