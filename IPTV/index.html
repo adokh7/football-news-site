@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>StreamSE — IPTV i 4K för hela Sverige | Prova gratis</title>
+  <meta name="description"
+    content="Över 20 000 kanaler och 50 000 filmer i äkta 4K. Utan bindningstid, utan lagg. Starta din gratis provperiod på 2 minuter — inget kort krävs.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0B0B0F', elevated: '#141419', card: '#1E1E24', hov: '#2A2A32',
+            bstrong: '#464650', tprim: '#F7F7F8', tsec: '#B1B1BC', tter: '#8A8A98',
+            gold: { 300: '#F6C75A', 400: '#F2B233', 500: '#E6A417' },
+            eblue: '#5985FF', live: '#FF2D55',
+          },
+          fontFamily: {
+            display: ['"Clash Display"', 'Inter', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            glow: '0 0 24px rgba(242,178,51,.35)',
+            lg2: '0 12px 32px rgba(0,0,0,.55)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html {
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .4s cubic-bezier(0, 0, .2, 1), transform .4s cubic-bezier(0, 0, .2, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .snap-x-carousel {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .snap-x-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .snap-x-carousel>* {
+      scroll-snap-align: start;
+    }
+
+    .poster:hover .poster-img {
+      transform: scale(1.05);
+    }
+
+    .poster-img {
+      transition: transform .3s cubic-bezier(.2, 0, 0, 1);
+    }
+
+    .poster:hover .poster-scrim {
+      opacity: 1;
+      transform: none;
+    }
+
+    .poster-scrim {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all .24s cubic-bezier(0, 0, .2, 1) 60ms;
+    }
+
+    @keyframes livepulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .5;
+      }
+    }
+
+    .live-dot {
+      animation: livepulse 2s ease-in-out infinite;
+    }
+
+    details>summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    details>summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details[open] .chev {
+      transform: rotate(180deg);
+    }
+
+    .chev {
+      transition: transform .24s cubic-bezier(.2, 0, 0, 1);
+    }
+
+    :focus-visible {
+      outline: 2px solid #5985FF;
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-bg text-tprim antialiased">
+
+  <a href="#main"
+    class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[600] focus:bg-gold-400 focus:text-bg focus:px-4 focus:py-2 focus:rounded-lg">Hoppa
+    till innehåll</a>
+
+  <div class="bg-[#1B1506] text-gold-300 text-center text-sm py-2 px-4">🔥 Sommarkampanj: 45 % rabatt på årsabonnemang —
+    begränsad tid</div>
+
+  <header id="header" class="sticky top-0 z-[200] transition-all duration-300 border-b border-transparent">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 h-[64px] md:h-[72px]">
+      <a href="#" class="font-display font-semibold text-xl tracking-tight">STREAM<span
+          class="text-gold-400">SE</span></a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-tsec" aria-label="Huvudmeny">
+        <a href="#priser" class="hover:text-tprim transition-colors">Paket &amp; priser</a>
+        <a href="#vod" class="hover:text-tprim transition-colors">Kanaler</a>
+        <a href="#funktioner" class="hover:text-tprim transition-colors">Guider</a>
+        <a href="#faq" class="hover:text-tprim transition-colors">Support</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#" class="hidden md:block text-sm text-tsec hover:text-tprim transition-colors">Logga in</a>
+        <a href="#trial"
+          class="bg-gold-400 hover:bg-gold-300 active:bg-gold-500 text-bg text-sm font-semibold px-4 py-2.5 rounded-[10px] transition-all hover:shadow-glow hover:-translate-y-px">Prova
+          gratis</a>
+        <button id="menuBtn" class="md:hidden p-2 -mr-2" aria-label="Öppna meny" aria-expanded="false">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileNav" class="hidden md:hidden bg-elevated border-t border-hov px-6 py-4 space-y-1">
+      <a href="#priser" class="block py-3.5 text-tsec hover:text-tprim border-b border-hov/50">Paket &amp; priser</a>
+      <a href="#vod" class="block py-3.5 text-tsec hover:text-tprim border-b border-hov/50">Kanaler</a>
+      <a href="#funktioner" class="block py-3.5 text-tsec hover:text-tprim border-b border-hov/50">Guider</a>
+      <a href="#faq" class="block py-3.5 text-tsec hover:text-tprim">Support</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 opacity-40 pointer-events-none" aria-hidden="true">
+        <div class="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-gold-500/10 blur-3xl"></div>
+        <div class="absolute top-40 right-0 w-[500px] h-[500px] rounded-full bg-eblue/10 blur-3xl"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-14 md:pt-28 md:pb-24 text-center">
+        <h1
+          class="font-display font-semibold tracking-tight leading-[1.08] text-[40px] sm:text-[56px] lg:text-[72px] max-w-4xl mx-auto">
+          Säg upp kabeln.<br class="sm:hidden"> Behåll allt.</h1>
+        <p class="mt-5 text-tsec text-[17px] md:text-lg max-w-xl mx-auto leading-relaxed">Över 20 000 kanaler och 50 000
+          filmer i äkta 4K — utan bindningstid, utan lagg, utan krångel.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center px-2">
+          <a href="#trial"
+            class="bg-gold-400 hover:bg-gold-300 active:scale-[.98] text-bg font-semibold px-7 py-3.5 rounded-[10px] transition-all hover:shadow-glow hover:-translate-y-px">Starta
+            gratis provperiod →</a>
+          <a href="#priser"
+            class="border border-bstrong hover:border-gold-400 hover:bg-hov px-7 py-3.5 rounded-[10px] transition-all">Se
+            paket &amp; priser</a>
+        </div>
+        <p class="mt-5 text-xs text-tter tracking-wide">Igång på 2 minuter · Inget kort krävs · 99,9 % drifttid</p>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="border-y border-hov bg-elevated/50">
+      <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 px-6 py-8 text-center">
+        <div class="reveal">
+          <div class="font-display font-semibold text-2xl md:text-3xl text-gold-400"><span class="counter"
+              data-target="12000">0</span>+</div>
+          <div class="text-xs text-tter mt-1">aktiva kunder</div>
+        </div>
+        <div class="reveal">
+          <div class="font-display font-semibold text-2xl md:text-3xl text-gold-400">99,9 %</div>
+          <div class="text-xs text-tter mt-1">drifttid senaste 12 mån</div>
+        </div>
+        <div class="reveal">
+          <div class="font-display font-semibold text-2xl md:text-3xl text-gold-400"><span class="counter"
+              data-target="20000">0</span>+</div>
+          <div class="text-xs text-tter mt-1">kanaler</div>
+        </div>
+        <div class="reveal">
+          <div class="font-display font-semibold text-2xl md:text-3xl text-gold-400">&lt; 15 min</div>
+          <div class="text-xs text-tter mt-1">svarstid på support</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="funktioner" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-28">
+      <h2
+        class="font-display font-semibold text-[25px] md:text-[32px] tracking-tight text-center max-w-2xl mx-auto reveal">
+        Därför byter tusentals svenskar varje månad</h2>
+      <div class="mt-10 md:mt-14 grid md:grid-cols-3 gap-5 md:gap-8">
+        <div
+          class="reveal bg-card rounded-2xl p-6 md:p-8 border border-hov transition-all duration-300 hover:-translate-y-1 hover:shadow-lg2 hover:border-bstrong">
+          <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center text-gold-400"
+            aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+              <path d="M13 3L4 14h6l-1 7 9-11h-6l1-7z" />
+            </svg></div>
+          <h3 class="mt-5 font-display font-semibold text-xl">Stabilitet du kan lita på</h3>
+          <p class="mt-3 text-tsec text-sm leading-relaxed">Våra servrar i Europa levererar 99,9 % drifttid — även under
+            Allsvenskan-derbyn och Champions League-kvällar när andra tjänster viker sig. Du ser matchen. Punkt.</p>
+        </div>
+        <div
+          class="reveal bg-card rounded-2xl p-6 md:p-8 border border-hov transition-all duration-300 hover:-translate-y-1 hover:shadow-lg2 hover:border-bstrong"
+          style="transition-delay:60ms">
+          <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center text-gold-400"
+            aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="13" rx="2" />
+              <path d="M8 21h8" />
+            </svg></div>
+          <h3 class="mt-5 font-display font-semibold text-xl">Allt innehåll. Ett abonnemang.</h3>
+          <p class="mt-3 text-tsec text-sm leading-relaxed">Svenska kanaler, internationell sport, nya filmer och
+            kompletta serier — samlat på ett ställe, i upp till 4K-kvalitet. Sluta betala för fem olika tjänster.</p>
+        </div>
+        <div
+          class="reveal bg-card rounded-2xl p-6 md:p-8 border border-hov transition-all duration-300 hover:-translate-y-1 hover:shadow-lg2 hover:border-bstrong"
+          style="transition-delay:120ms">
+          <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center text-gold-400"
+            aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+              <rect x="7" y="2" width="10" height="20" rx="2" />
+              <path d="M11 18h2" />
+            </svg></div>
+          <h3 class="mt-5 font-display font-semibold text-xl">Fungerar på alla dina skärmar</h3>
+          <p class="mt-3 text-tsec text-sm leading-relaxed">Smart TV, mobil, surfplatta eller dator — kom igång på under
+            5 minuter med våra steg-för-steg-guider. Fastnar du? Vår support svarar dygnet runt, året om.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOD CAROUSEL -->
+    <section id="vod" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 md:pb-28">
+      <div class="flex items-center justify-between mb-6 reveal">
+        <h2 class="font-display font-semibold text-[25px] md:text-[32px] tracking-tight">Populärt just nu</h2>
+        <span
+          class="inline-flex items-center gap-1.5 bg-live/10 text-[#FF5C7A] text-xs font-medium px-3 py-1 rounded-full uppercase tracking-wider"><span
+            class="live-dot w-1.5 h-1.5 rounded-full bg-live"></span>Live</span>
+      </div>
+      <div class="snap-x-carousel flex gap-3 md:gap-4 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0" role="region"
+        aria-label="Populära titlar">
+        <!-- posters injected by JS -->
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="priser" class="bg-elevated/40 border-y border-hov">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-28">
+        <h2 class="font-display font-semibold text-[25px] md:text-[32px] tracking-tight text-center reveal">Ett pris.
+          Allt du vill se.</h2>
+        <p class="text-center text-tsec mt-3 max-w-lg mx-auto reveal">Välj din period och börja titta inom minuter —
+          full återbetalning inom 7 dagar om du ångrar dig.</p>
+
+        <div class="mt-9 flex justify-center reveal">
+          <div class="inline-flex bg-elevated border border-hov rounded-full p-1 relative" role="tablist"
+            aria-label="Abonnemangsperiod">
+            <button class="dur-btn px-4 sm:px-5 py-2 rounded-full text-sm transition-colors text-tsec" data-months="1"
+              role="tab" aria-selected="false">1 mån</button>
+            <button class="dur-btn px-4 sm:px-5 py-2 rounded-full text-sm transition-colors text-tsec" data-months="6"
+              role="tab" aria-selected="false">6 mån</button>
+            <button
+              class="dur-btn px-4 sm:px-5 py-2 rounded-full text-sm transition-colors bg-gold-400 text-bg font-semibold"
+              data-months="12" role="tab" aria-selected="true">12 mån <span class="hidden sm:inline text-[11px]">· Spara
+                45 %</span></button>
+          </div>
+        </div>
+
+        <div class="mt-10 md:mt-12 grid md:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto items-stretch">
+          <div
+            class="plan-card reveal bg-card border border-hov rounded-3xl p-7 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg2"
+            data-base="449" data-devices="1" data-name="Bas">
+            <h3 class="font-display font-semibold text-xl">Bas</h3>
+            <div class="mt-4"><span class="price font-display font-semibold text-4xl tabular-nums">247</span><span
+                class="text-tter text-sm"> kr/mån</span></div>
+            <p class="total text-xs text-tter mt-1 h-4"></p>
+            <ul class="mt-6 space-y-3 text-sm text-tsec flex-1">
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Allt innehåll ingår</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Upp till 4K</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>1 samtidig enhet</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Support dygnet runt</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Aktiveras direkt</li>
+            </ul>
+            <a href="#trial"
+              class="mt-7 text-center border border-bstrong hover:border-gold-400 hover:bg-hov py-3 rounded-[10px] text-sm font-medium transition-all">Välj
+              Bas →</a>
+          </div>
+          <div
+            class="plan-card reveal bg-card border-[1.5px] border-gold-400 rounded-3xl p-7 flex flex-col relative md:scale-[1.03] transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+            data-base="449" data-devices="3" data-name="Premium" style="transition-delay:60ms">
+            <span
+              class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-400 text-bg text-xs font-semibold px-3.5 py-1 rounded-full uppercase tracking-wider">Populärast</span>
+            <h3 class="font-display font-semibold text-xl">Premium</h3>
+            <div class="mt-4"><span
+                class="price font-display font-semibold text-4xl tabular-nums text-gold-400">302</span><span
+                class="text-tter text-sm"> kr/mån</span></div>
+            <p class="total text-xs text-tter mt-1 h-4"></p>
+            <ul class="mt-6 space-y-3 text-sm text-tsec flex-1">
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Allt innehåll ingår</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Upp till 4K</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>3 samtidiga enheter</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Support dygnet runt</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Aktiveras direkt</li>
+            </ul>
+            <a href="#trial"
+              class="mt-7 text-center bg-gold-400 hover:bg-gold-300 text-bg py-3 rounded-[10px] text-sm font-semibold transition-all hover:shadow-glow">Välj
+              Premium →</a>
+          </div>
+          <div
+            class="plan-card reveal bg-card border border-hov rounded-3xl p-7 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg2"
+            data-base="449" data-devices="5" data-name="Familj" style="transition-delay:120ms">
+            <h3 class="font-display font-semibold text-xl">Familj</h3>
+            <div class="mt-4"><span class="price font-display font-semibold text-4xl tabular-nums">357</span><span
+                class="text-tter text-sm"> kr/mån</span></div>
+            <p class="total text-xs text-tter mt-1 h-4"></p>
+            <ul class="mt-6 space-y-3 text-sm text-tsec flex-1">
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Allt innehåll ingår</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Upp till 4K</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>5 samtidiga enheter</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Support dygnet runt</li>
+              <li class="flex gap-2.5"><span class="text-gold-400">✓</span>Aktiveras direkt</li>
+            </ul>
+            <a href="#trial"
+              class="mt-7 text-center border border-bstrong hover:border-gold-400 hover:bg-hov py-3 rounded-[10px] text-sm font-medium transition-all">Välj
+              Familj →</a>
+          </div>
+        </div>
+        <p class="text-center text-xs text-tter mt-8 reveal">💳 Kort, Swish eller krypto · 🔒 Krypterad betalning · ↩ 7
+          dagars öppet köp</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-28">
+      <h2 class="font-display font-semibold text-[25px] md:text-[32px] tracking-tight text-center reveal">Över 12 000
+        nöjda kunder har redan klippt kabeln</h2>
+      <div class="mt-10 md:mt-14 grid md:grid-cols-3 gap-5 md:gap-6">
+        <figure class="reveal bg-card border border-hov rounded-2xl p-6">
+          <div class="text-gold-400 tracking-widest" aria-label="5 av 5 stjärnor">★★★★★</div>
+          <blockquote class="mt-4 text-sm text-tsec leading-relaxed">”Jag var skeptisk, men provperioden övertygade mig
+            direkt. Inte en enda frysning under hela SHL-slutspelet. Kabeln är uppsagd.”</blockquote>
+          <figcaption class="mt-4 text-xs text-tter">Johan L., Göteborg — Samsung Smart TV</figcaption>
+        </figure>
+        <figure class="reveal bg-card border border-hov rounded-2xl p-6" style="transition-delay:60ms">
+          <div class="text-gold-400 tracking-widest" aria-label="5 av 5 stjärnor">★★★★★</div>
+          <blockquote class="mt-4 text-sm text-tsec leading-relaxed">”Vi betalade över 800 kr i månaden för kabel och
+            tre streamingtjänster. Nu betalar vi en bråkdel — och barnen har fler kanaler än någonsin.”</blockquote>
+          <figcaption class="mt-4 text-xs text-tter">Sara M., Stockholm — Apple TV</figcaption>
+        </figure>
+        <figure class="reveal bg-card border border-hov rounded-2xl p-6" style="transition-delay:120ms">
+          <div class="text-gold-400 tracking-widest" aria-label="5 av 5 stjärnor">★★★★★</div>
+          <blockquote class="mt-4 text-sm text-tsec leading-relaxed">”Supporten svarade klockan 23 en söndag och löste
+            allt på tio minuter. Det har aldrig kabelbolaget gjort.”</blockquote>
+          <figcaption class="mt-4 text-xs text-tter">Ahmed K., Malmö — Android Box</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="max-w-3xl mx-auto px-4 sm:px-6 pb-16 md:pb-28">
+      <h2 class="font-display font-semibold text-[25px] md:text-[32px] tracking-tight text-center reveal">Vanliga frågor
+      </h2>
+      <div class="mt-10 space-y-3" id="faqList"></div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="trial" class="border-t border-hov bg-gradient-to-b from-elevated/60 to-bg">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16 md:py-24 text-center">
+        <h2 class="font-display font-semibold text-[28px] md:text-[36px] tracking-tight reveal">Redo att se skillnaden
+          själv?</h2>
+        <p class="mt-4 text-tsec reveal">Testa gratis idag. Ingen betalning, ingen bindning — bara ren tv-upplevelse i
+          4K.</p>
+        <form id="trialForm" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto reveal" novalidate>
+          <label for="trialEmail" class="sr-only">E-postadress</label>
+          <input id="trialEmail" type="email" required placeholder="Din e-postadress" autocomplete="email"
+            class="flex-1 bg-elevated border border-hov focus:border-eblue rounded-[10px] px-4 py-3.5 text-base placeholder:text-tter outline-none transition-colors">
+          <button type="submit"
+            class="bg-gold-400 hover:bg-gold-300 active:scale-[.98] text-bg font-semibold px-6 py-3.5 rounded-[10px] transition-all hover:shadow-glow whitespace-nowrap">Ja,
+            ge mig min gratis provperiod →</button>
+        </form>
+        <p id="trialMsg" class="mt-4 text-sm h-5" role="status" aria-live="polite"></p>
+        <p class="mt-1 text-xs text-tter">Dina uppgifter skickas inom 2 minuter. Ingen spam — vi lovar.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-hov">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="col-span-2 md:col-span-1">
+          <div class="font-display font-semibold text-lg">STREAM<span class="text-gold-400">SE</span></div>
+          <p class="mt-3 text-sm text-tter leading-relaxed">Premium-IPTV för hela Sverige. Stabilt, skarpt, utan
+            bindningstid.</p>
+        </div>
+        <nav aria-label="Tjänsten">
+          <h3 class="text-sm font-semibold mb-3">Tjänsten</h3>
+          <ul class="space-y-2 text-sm text-tter">
+            <li><a href="#priser" class="hover:text-tprim transition-colors">Paket &amp; priser</a></li>
+            <li><a href="#trial" class="hover:text-tprim transition-colors">Gratis provperiod</a></li>
+            <li><a href="#vod" class="hover:text-tprim transition-colors">Kanallista</a></li>
+            <li><a href="#vod" class="hover:text-tprim transition-colors">Filmbibliotek</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Hjälp">
+          <h3 class="text-sm font-semibold mb-3">Hjälp</h3>
+          <ul class="space-y-2 text-sm text-tter">
+            <li><a href="#funktioner" class="hover:text-tprim transition-colors">Installationsguider</a></li>
+            <li><a href="#faq" class="hover:text-tprim transition-colors">Support 24/7</a></li>
+            <li><a href="#faq" class="hover:text-tprim transition-colors">Vanliga frågor</a></li>
+            <li><a href="#" class="hover:text-tprim transition-colors">Kontakt</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Företaget">
+          <h3 class="text-sm font-semibold mb-3">Företaget</h3>
+          <ul class="space-y-2 text-sm text-tter">
+            <li><a href="#" class="hover:text-tprim transition-colors">Om oss</a></li>
+            <li><a href="#" class="hover:text-tprim transition-colors">Återbetalningspolicy</a></li>
+            <li><a href="#" class="hover:text-tprim transition-colors">Villkor</a></li>
+            <li><a href="#" class="hover:text-tprim transition-colors">Integritetspolicy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div
+        class="mt-10 pt-6 border-t border-hov flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-tter">
+        <span>🔒 Säker betalning · 🇸🇪 Svensk support dygnet runt · ⚡ 99,9 % drifttid</span>
+        <span>© 2026 StreamSE. Alla rättigheter förbehållna.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- Sticky header blur ----------
+    const header = document.getElementById('header');
+    const onScroll = () => {
+      if (window.scrollY > 24) {
+        header.style.background = 'rgba(11,11,15,.85)';
+        header.style.backdropFilter = 'blur(16px)';
+        header.style.webkitBackdropFilter = 'blur(16px)';
+        header.classList.add('border-hov'); header.classList.remove('border-transparent');
+      } else {
+        header.style.background = 'transparent';
+        header.style.backdropFilter = 'none';
+        header.classList.remove('border-hov'); header.classList.add('border-transparent');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // ---------- Mobile nav ----------
+    const menuBtn = document.getElementById('menuBtn'), mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false');
+    }));
+
+    // ---------- Scroll reveal (once) ----------
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => reduced ? el.classList.add('in') : io.observe(el));
+
+    // ---------- Count-up stats ----------
+    const fmt = new Intl.NumberFormat('sv-SE');
+    const cio = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target, target = +el.dataset.target;
+        cio.unobserve(el);
+        if (reduced) { el.textContent = fmt.format(target); return; }
+        const t0 = performance.now(), dur = 1200;
+        (function tick(t) {
+          const p = Math.min((t - t0) / dur, 1), ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = fmt.format(Math.round(target * ease));
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => cio.observe(el));
+
+    // ---------- Pricing calculator ----------
+    const DISCOUNT = { 1: 0, 6: 0.30, 12: 0.45 };
+    const PER_EXTRA_DEVICE = 50;
+    let months = 12;
+    function quote(base, devices, m) {
+      return Math.round((base + PER_EXTRA_DEVICE * (devices - 1)) * (1 - DISCOUNT[m]));
+    }
+    function animateNumber(el, to) {
+      const from = parseInt(el.textContent.replace(/\D/g, '')) || 0;
+      if (reduced || from === to) { el.textContent = fmt.format(to); return; }
+      const t0 = performance.now(), dur = 400;
+      (function tick(t) {
+        const p = Math.min((t - t0) / dur, 1), ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt.format(Math.round(from + (to - from) * ease));
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }
+    function renderPrices() {
+      document.querySelectorAll('.plan-card').forEach(card => {
+        const perMonth = quote(+card.dataset.base, +card.dataset.devices, months);
+        animateNumber(card.querySelector('.price'), perMonth);
+        const totalEl = card.querySelector('.total');
+        totalEl.textContent = months > 1 ? `Totalt ${fmt.format(perMonth * months)} kr för ${months} månader` : 'Faktureras månadsvis';
+      });
+    }
+    document.querySelectorAll('.dur-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        months = +btn.dataset.months;
+        document.querySelectorAll('.dur-btn').forEach(b => {
+          const active = b === btn;
+          b.classList.toggle('bg-gold-400', active); b.classList.toggle('text-bg', active);
+          b.classList.toggle('font-semibold', active); b.classList.toggle('text-tsec', !active);
+          b.setAttribute('aria-selected', active);
+        });
+        renderPrices();
+      });
+    });
+    renderPrices();
+
+    // ---------- VOD posters ----------
+    const posters = [
+      { t: 'Allsvenskan Live', c: '#14532d', badge: '4K', icon: '⚽' },
+      { t: 'Champions League', c: '#1e3a8a', badge: '4K', icon: '🏆' },
+      { t: 'Nordic Noir', c: '#312e81', badge: 'HD', icon: '🎬' },
+      { t: 'SHL Hockey', c: '#7f1d1d', badge: '4K', icon: '🏒' },
+      { t: 'Barnens favoriter', c: '#78350f', badge: 'HD', icon: '🧸' },
+      { t: 'Premiärfilmer', c: '#3f1d38', badge: '4K', icon: '🍿' },
+      { t: 'Dokumentärer', c: '#134e4a', badge: 'HD', icon: '🌍' },
+      { t: 'Live-sport 24/7', c: '#431407', badge: '4K', icon: '📡' },
+    ];
+    document.querySelector('.snap-x-carousel').innerHTML = posters.map(p => `
+  <div class="poster relative shrink-0 w-[140px] md:w-[180px] aspect-[2/3] rounded-2xl overflow-hidden cursor-pointer" tabindex="0" role="button" aria-label="${p.t}">
+    <div class="poster-img absolute inset-0 flex items-center justify-center text-5xl" style="background:linear-gradient(160deg, ${p.c}, #0B0B0F)" aria-hidden="true">${p.icon}</div>
+    <span class="absolute top-2.5 right-2.5 ${p.badge === '4K' ? 'bg-gold-400 text-bg' : 'bg-hov text-tsec'} text-[10px] font-semibold px-2 py-0.5 rounded-full z-10">${p.badge}</span>
+    <div class="poster-scrim absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg via-bg/80 to-transparent p-3 pt-10">
+      <p class="text-sm font-medium">${p.t}</p>
+      <p class="text-[11px] text-gold-400 mt-0.5">Titta nu →</p>
+    </div>
+  </div>`).join('');
+
+    // ---------- FAQ ----------
+    const faqs = [
+      ['Vad är IPTV och är det lagligt att använda?', 'IPTV betyder att tv levereras via internet i stället för antenn eller kabel. Tekniken i sig är helt laglig och används av operatörer världen över. Du ansvarar själv för hur tjänsten används i ditt land.'],
+      ['Behöver jag ett kreditkort för provperioden?', 'Nej. Du fyller i din e-post, väljer din enhet och får dina uppgifter direkt — helt utan kort och utan förpliktelser. Provperioden avslutas automatiskt.'],
+      ['Fungerar det på min Smart TV?', 'Ja. Vi stödjer Samsung, LG, Android TV, Apple TV, Fire Stick, mobiler, datorer och MAG-boxar. Varje enhet har en egen installationsguide — de flesta är igång på under 5 minuter.'],
+      ['Laggar det under stora matcher?', 'Nej — det är just där vi skiljer oss. Våra servrar är dimensionerade för toppbelastning och levererade 99,9 % drifttid under hela förra säsongen, inklusive VM- och CL-kvällar.'],
+      ['Hur många enheter kan jag använda samtidigt?', 'Det beror på ditt paket — från 1 till 5 samtidiga enheter. Du kan installera tjänsten på hur många enheter du vill och uppgradera när som helst.'],
+      ['Vilka svenska kanaler ingår?', 'Alla stora svenska kanaler ingår, tillsammans med nordiska grannländernas utbud och internationell sport i 4K. Se hela kanallistan innan du bestämmer dig.'],
+      ['Kan jag ångra mig efter köp?', 'Ja. Vi erbjuder full återbetalning inom 7 dagar om tjänsten inte fungerar som utlovat. Inga diskussioner, inga dolda villkor.'],
+      ['Hur snabbt internet behöver jag?', '10 Mbit/s räcker för HD, 25 Mbit/s för stabil 4K. Har du vanligt svenskt bredband är du mer än redo.'],
+    ];
+    document.getElementById('faqList').innerHTML = faqs.map(([q, a]) => `
+  <details class="reveal bg-card border border-hov rounded-2xl group">
+    <summary class="flex items-center justify-between gap-4 p-5 font-medium text-[15px]">
+      ${q}
+      <svg class="chev shrink-0 text-tter" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <p class="px-5 pb-5 text-sm text-tsec leading-relaxed">${a}</p>
+  </details>`).join('');
+    document.querySelectorAll('#faqList .reveal').forEach(el => reduced ? el.classList.add('in') : io.observe(el));
+
+    // ---------- Trial form ----------
+    document.getElementById('trialForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const input = document.getElementById('trialEmail'), msg = document.getElementById('trialMsg');
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value.trim());
+      if (!valid) {
+        msg.textContent = 'Ange en giltig e-postadress';
+        msg.className = 'mt-4 text-sm h-5 text-[#F87171]';
+        input.classList.add('border-[#EF4444]'); input.focus();
+        return;
+      }
+      input.classList.remove('border-[#EF4444]');
+      msg.textContent = 'Klart! Dina uppgifter är på väg 🎉 Kolla din inkorg.';
+      msg.className = 'mt-4 text-sm h-5 text-[#4ADE80]';
+      e.target.reset();
+    });
+  </script>
+</body>
+
+</html>

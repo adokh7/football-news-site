@@ -1,0 +1,114 @@
+/* ============================================
+   IPTV Premium Sverige — Design Tokens v1.0
+   Theme: Bold Luxury Dark (dark-first)
+   ============================================ */
+
+:root {
+  /* ---- Brand: Gold (primary) ---- */
+  --gold-50:#FFF9EB; --gold-100:#FDEEC8; --gold-200:#FADD91; --gold-300:#F6C75A;
+  --gold-400:#F2B233; --gold-500:#E6A417; --gold-600:#C4880D; --gold-700:#9C6A0E;
+  --gold-800:#7E5512; --gold-900:#684614;
+
+  /* ---- Brand: Electric Blue (secondary) ---- */
+  --blue-300:#8EB0FF; --blue-400:#5985FF; --blue-500:#335EFF; --blue-600:#1B3DF5; --blue-700:#142CD1;
+
+  /* ---- Neutrals ---- */
+  --n-0:#FFFFFF; --n-50:#F7F7F8; --n-100:#ECECEF; --n-200:#D5D5DC; --n-300:#B1B1BC;
+  --n-400:#8A8A98; --n-500:#6C6C7A; --n-600:#565663; --n-700:#464650;
+  --n-800:#2A2A32; --n-850:#1E1E24; --n-900:#141419; --n-950:#0B0B0F; --n-1000:#050507;
+
+  /* ---- Semantic ---- */
+  --success:#22C55E; --success-subtle:#0E2B1A; --success-text:#4ADE80;
+  --warning:#F59E0B; --warning-subtle:#2D2107; --warning-text:#FBBF24;
+  --error:#EF4444;   --error-subtle:#2F1212;   --error-text:#F87171;
+  --info:#3B82F6;    --info-subtle:#0F1D33;    --info-text:#60A5FA;
+  --live:#FF2D55;    --live-subtle:#33101A;    --live-text:#FF5C7A;
+
+  /* ---- Dark theme surface tokens (default) ---- */
+  --bg:var(--n-950);
+  --bg-elevated:var(--n-900);
+  --bg-card:var(--n-850);
+  --bg-hover:var(--n-800);
+  --border:var(--n-800);
+  --border-strong:var(--n-700);
+  --text-primary:var(--n-50);
+  --text-secondary:var(--n-300);
+  --text-tertiary:var(--n-400);
+  --text-inverse:var(--n-950);
+  --accent:var(--gold-400);
+  --accent-hover:var(--gold-300);
+  --accent-pressed:var(--gold-500);
+  --focus-ring:var(--blue-400);
+
+  /* ---- Gradients ---- */
+  --grad-hero:linear-gradient(135deg,#0B0B0F 0%,#141419 50%,#1B1506 100%);
+  --grad-gold:linear-gradient(120deg,#F6C75A 0%,#E6A417 55%,#C4880D 100%);
+  --grad-card:linear-gradient(180deg,rgba(242,178,51,.08) 0%,rgba(11,11,15,0) 60%);
+  --grad-scrim:linear-gradient(180deg,rgba(11,11,15,0) 0%,rgba(11,11,15,.92) 100%);
+
+  /* ---- Typography ---- */
+  --font-display:'Clash Display','Inter',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+
+  --text-display-xl:600 clamp(44px,6vw,72px)/1.05 var(--font-display);
+  --text-display:   600 clamp(36px,4.5vw,56px)/1.08 var(--font-display);
+  --text-h1:        600 clamp(32px,3.2vw,40px)/1.15 var(--font-display);
+  --text-h2:        600 clamp(26px,2.6vw,32px)/1.2 var(--font-display);
+  --text-h3:        600 clamp(20px,2vw,24px)/1.3 var(--font-body);
+  --text-h4:        500 clamp(18px,1.6vw,20px)/1.4 var(--font-body);
+  --text-body-lg:   400 18px/1.6 var(--font-body);
+  --text-body:      400 16px/1.6 var(--font-body);
+  --text-caption:   500 13px/1.45 var(--font-body);
+  --tracking-tight:-0.02em; --tracking-caption:0.02em;
+
+  /* ---- Spacing (8px grid) ---- */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
+  --sp-7:40px; --sp-8:48px; --sp-9:64px; --sp-10:80px; --sp-11:96px; --sp-12:128px;
+
+  /* ---- Radius / Shadow ---- */
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:24px; --r-full:9999px;
+  --sh-sm:0 1px 2px rgba(0,0,0,.4);
+  --sh-md:0 4px 12px rgba(0,0,0,.45);
+  --sh-lg:0 12px 32px rgba(0,0,0,.55);
+  --sh-glow-gold:0 0 24px rgba(242,178,51,.35);
+  --sh-glow-live:0 0 16px rgba(255,45,85,.45);
+
+  /* ---- Motion ---- */
+  --dur-instant:100ms; --dur-fast:160ms; --dur-base:240ms; --dur-slow:400ms; --dur-cinematic:700ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --ease-enter:cubic-bezier(0,0,.2,1);
+  --ease-exit:cubic-bezier(.4,0,1,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+
+  /* ---- Z-index ---- */
+  --z-dropdown:100; --z-sticky:200; --z-overlay:300; --z-modal:400; --z-toast:500;
+
+  color-scheme: dark;
+}
+
+/* Optional light mode (marketing pages stay dark; docs/support may use light) */
+[data-theme="light"] {
+  --bg:var(--n-50); --bg-elevated:var(--n-0); --bg-card:var(--n-0); --bg-hover:var(--n-100);
+  --border:var(--n-200); --border-strong:var(--n-300);
+  --text-primary:var(--n-950); --text-secondary:var(--n-600); --text-tertiary:var(--n-500);
+  --text-inverse:var(--n-50);
+  --accent:var(--gold-600); --accent-hover:var(--gold-500); --accent-pressed:var(--gold-700);
+  color-scheme: light;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* Focus visible — global */
+:focus-visible {
+  outline:2px solid var(--focus-ring);
+  outline-offset:2px;
+  border-radius:var(--r-sm);
+}
