@@ -1,4 +1,17 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "govolsgo.com"
+        }
+      ],
+      "destination": "https://www.govolsgo.com/$1",
+      "permanent": true
+    }
+  ]
 }
