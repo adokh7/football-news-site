@@ -222,6 +222,200 @@
       pointer-events: none;
     }
 
+    /* ══════════════════════════════════════════════════════════════
+       HERO GRID ARCHITECTURE — STRICTLY 1 MAIN + 2 SECONDARY
+       ──────────────────────────────────────────────────────────────
+       Contract: .hero-grid holds exactly two children —
+         .hero-main       → 1 big card   (grid-column: span 1)
+         .hero-secondary  → 2 stacked    (grid-template-rows: 1fr 1fr)
+       Heights are explicit, never percentage-of-auto-row (that silently
+       falls back to content height and overflows the grid).
+       The nth-of-type guards below make the layout self-defending: if the
+       publishing flow injects extra cards, they are hidden instead of
+       squashing the grid. Move older stories to "Latest News" below.
+       ══════════════════════════════════════════════════════════════ */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .hero-main,
+    .hero-secondary {
+      min-width: 0;
+      min-height: 0;
+    }
+
+    /* Exactly 1 card in the main slot */
+    .hero-main {
+      height: 420px;
+    }
+
+    /* Exactly 2 cards stacked, equal rows */
+    .hero-secondary {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 1rem;
+      min-height: 0;
+    }
+
+    .hero-main > article,
+    .hero-secondary > article {
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ── STRUCTURAL GUARDS ──────────────────────────────────────────
+       Never allow more than 1 main / 2 secondary cards to render. */
+    .hero-main > article:nth-of-type(n+2),
+    .hero-secondary > article:nth-of-type(n+3) {
+      display: none !important;
+    }
+
+    @media (min-width: 640px) {
+      .hero-main {
+        height: 480px;
+      }
+
+      .hero-secondary {
+        height: 480px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-grid {
+        /* LEFT: main hero · RIGHT: secondary stack */
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero-main,
+      .hero-secondary {
+        height: 540px;
+      }
+    }
+
+    /* The tall desktop hero has room for a third standfirst line, so the
+       intro reads in full instead of clipping mid-sentence. */
+    @media (min-width: 1024px) {
+      .hero-main .hero-standfirst {
+        -webkit-line-clamp: 3;
+      }
+    }
+
+    /* Secondary card internals: media and body split explicitly so the
+       headline and badge always have reserved space and never clip. */
+    .hero-secondary .u-card-media {
+      aspect-ratio: auto;
+      flex: 0 0 52%;
+      height: 52%;
+      min-height: 0;
+    }
+
+    .hero-secondary .u-card-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      padding: .7rem .9rem .75rem;
+      overflow: hidden;
+    }
+
+    .hero-secondary .u-card-title {
+      -webkit-line-clamp: 2;
+      font-size: .875rem;
+      line-height: 1.3;
+      margin-bottom: 0;
+    }
+
+    .hero-secondary .u-card-meta {
+      padding-top: .4rem;
+      font-size: 10px;
+    }
+
+    @media (max-width: 1023px) {
+      .hero-secondary .u-card-title {
+        font-size: .9375rem;
+      }
+    }
+
+    /* News cards */
+    .news-card {
+      transition: border-color .2s, box-shadow .2s
+    }
+
+    .news-card:hover {
+      border-color: rgba(251, 191, 36, .4);
+      box-shadow: 0 0 0 1px rgba(251, 191, 36, .12)
+    }
+
+    .news-card:hover .card-title {
+      color: #F59E0B
+    }
+
+    .card-title {
+      transition: color .2s
+    }
+
+    /* Countdown */
+    .cd-block {
+      background: rgba(15, 23, 42, .7);
+      border: 1px solid rgba(245, 158, 11, .25);
+      backdrop-filter: blur(4px)
+    }
+
+    /* Section bar */
+    .section-bar {
+      border-left: 3px solid #F59E0B;
+      padding-left: 10px
+    }
+
+    /* Shimmer skeleton */
+    .shimmer {
+      background: linear-gradient(90deg, #1e293b 25%, #273548 50%, #1e293b 75%);
+      background-size: 400% 100%;
+      animation: shimmer-anim 1.4s infinite
+    }
+
+    @keyframes shimmer-anim {
+      0% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    /* Refresh spin */
+    .spin-once {
+      animation: spin-once .7s linear
+    }
+
+    @keyframes spin-once {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* Match item hover */
+    .match-item {
+      transition: background .15s;
+      border-radius: .5rem
+    }
+
+    /* ── HERO / CARD OVERLAY SYSTEM ───────────────────────────── */
+    /* Smooth readable scrim so headlines never wash out or clip.
+       Kept deliberately heavy at the base: the editorial thumbnails carry
+       baked-in artwork/type, so the copy needs a near-solid plate to sit on. */
+    .card-scrim {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.88) 22%, rgba(0, 0, 0, 0.55) 48%, rgba(0, 0, 0, 0.15) 72%, transparent 100%);
+      pointer-events: none;
+    }
+
     /* Explicit hero heights — percentage heights cannot resolve against an
        auto-sized grid row, which previously let the hero overflow its grid. */
     .hero-shell {
@@ -522,92 +716,62 @@
         <!-- Single h1 — visually hidden, present for SEO & a11y -->
         <h1 class="sr-only">Govolsgo — Global Football News and Live Match Centre</h1>
 
-        <!-- ── HERO GRID (Bento Box) ── -->
-        <div
-          class="grid grid-cols-1 lg:grid-cols-12 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out items-start">
+        <!-- ══════════════════════════════════════════════════════════════════ -->
+        <!-- HERO LAYOUT RULE: ALWAYS KEEP STRICTLY 1 MAIN HERO CARD + 2 SECONDARY CARDS. MOVE OLDER CARDS TO LATEST NEWS GRID BELOW -->
+        <!-- ══════════════════════════════════════════════════════════════════ -->
+        <div class="hero-grid reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
 
-          <!-- Lead story -->
-          <article
-            class="hero-shell lg:col-span-8 relative rounded-2xl overflow-hidden group shadow-2xl border border-slate-700 hover:border-amber-500/60 transition-colors">
-            <a href="/bruno-guimaraes-arsenal-transfer" class="absolute inset-0 z-0" aria-label="Arsenal's £70m Guimaraes move">
-              <img src="/bruno-guimaraes-arsenal-transfer.webp"
-                alt="Bruno Guimaraes in Newcastle kit amid Arsenal £70m transfer interest"
-                class="media-cover transition-transform duration-1000 ease-out group-hover:scale-105" width="1200" height="675"
-                fetchpriority="high" decoding="async">
-              <div class="absolute inset-0 card-scrim"></div>
-            </a>
-            <div class="hero-copy absolute bottom-0 left-0 w-full z-10">
-              <span
-                class="inline-block bg-amber-500 text-slate-900 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 shadow-lg font-oswald">Transfers</span>
-              <h2 class="hero-headline font-black text-white mb-3 font-oswald drop-shadow-lg">
-                <a href="/bruno-guimaraes-arsenal-transfer"
-                  class="hover:underline decoration-amber-500 underline-offset-4">Arsenal's £70m Guimaraes Move: The
-                  Catch Nobody's Reporting</a>
-              </h2>
-              <p class="hero-standfirst text-slate-200 mb-4 max-w-2xl drop-shadow">Arsenal want Bruno Guimaraes and he
-                wants them. So why has this dragged on for weeks with no bid actually placed?</p>
-              <div class="flex items-center text-xs text-slate-300 font-medium">
-                <span class="text-emerald-400 font-bold mr-4">Just now</span>
-                <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg> 7 min read</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Secondary stack -->
-          <div class="hero-stack lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6">
-
-            <article class="u-card bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-lg">
-              <a href="/jurgen-klopp-germany-national-team.html" class="u-card-media block">
-                <span
-                  class="absolute top-3 left-3 bg-amber-500 text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide z-10 font-oswald">Analysis</span>
+          <!-- ── SLOT 1: MAIN HERO CARD (exactly one) ── -->
+          <div class="hero-main">
+            <article
+              class="rounded-2xl overflow-hidden group shadow-2xl border border-slate-700 hover:border-amber-500/60 transition-colors">
+              <a href="/jurgen-klopp-germany-national-team" class="absolute inset-0 z-0"
+                aria-label="Jurgen Klopp signs as Germany head coach through 2030">
                 <img src="/jurgen-klopp-germany-head-coach.webp"
-                  alt="Jürgen Klopp during official presentation as Germany head coach" class="media-cover"
-                  width="640" height="360" loading="lazy" decoding="async">
+                  alt="Jurgen Klopp unveiled as Germany national team head coach" class="media-cover"
+                  width="1200" height="675" fetchpriority="high" decoding="async">
+                <div class="absolute inset-0 card-scrim"></div>
               </a>
-              <div class="u-card-body">
-                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
-                  <a href="/jurgen-klopp-germany-national-team.html">Klopp Signs Through 2030, Sets His Own Exit Clause</a>
-                </h3>
-                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
-                  now • 5 min read</div>
-              </div>
-            </article>
-
-            <article class="u-card bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-lg">
-              <a href="/premier-league-title-race-preview" class="u-card-media block">
+              <div class="hero-copy absolute bottom-0 left-0 w-full z-10">
                 <span
-                  class="absolute top-3 left-3 bg-amber-500 text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide z-10 font-oswald">Premier League</span>
-                <img src="/premier-league-title-race-preview.webp"
-                  alt="Premier League trophy under stadium lights ahead of the new season" class="media-cover"
-                  width="640" height="360" loading="lazy" decoding="async">
-              </a>
-              <div class="u-card-body">
-                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
-                  <a href="/premier-league-title-race-preview">Six Managers Changed. Only One Wins the League.</a>
-                </h3>
-                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
-                  now • 7 min read</div>
+                  class="inline-block bg-amber-500 text-slate-900 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 shadow-lg font-oswald">Germany</span>
+                <h2 class="hero-headline font-black text-white mb-3 font-oswald drop-shadow-lg">
+                  <a href="/jurgen-klopp-germany-national-team"
+                    class="hover:underline decoration-amber-500 underline-offset-4">Klopp Signs Through 2030, Sets His
+                    Own Exit Clause</a>
+                </h2>
+                <p class="hero-standfirst text-slate-200 mb-4 max-w-2xl drop-shadow">Klopp compared his Germany
+                  appointment to a movie. So why did he immediately threaten to walk away without severance?</p>
+                <div class="flex items-center text-xs text-slate-300 font-medium">
+                  <span class="text-emerald-400 font-bold mr-4">Just now</span>
+                  <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                      viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg> 7 min read</span>
+                </div>
               </div>
             </article>
+          </div>
+
+          <!-- ── SLOTS 2 & 3: SECONDARY STACK (exactly two) ── -->
+          <div class="hero-secondary">
 
             <article class="u-card bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-lg">
-              <a href="/eli-junior-kroupi-barcelona-transfer" class="u-card-media block">
+              <a href="/bruno-guimaraes-arsenal-transfer" class="u-card-media block">
                 <span
                   class="absolute top-3 left-3 bg-amber-500 text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide z-10 font-oswald">Transfers</span>
-                <img src="/eli-junior-kroupi-barcelona-transfer.webp"
-                  alt="Eli Junior Kroupi in Bournemouth kit amid Barcelona transfer interest" class="media-cover"
-                  width="640" height="360" loading="lazy" decoding="async">
+                <img src="/bruno-guimaraes-arsenal-transfer.webp"
+                  alt="Bruno Guimaraes amid Arsenal £70m transfer interest" class="media-cover" width="640"
+                  height="360" loading="lazy" decoding="async">
               </a>
               <div class="u-card-body">
-                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
-                  <a href="/eli-junior-kroupi-barcelona-transfer">Barcelona's Alvarez Plan B Just Got Slammed Shut</a>
+                <h3 class="u-card-title font-bold text-white font-oswald">
+                  <a href="/bruno-guimaraes-arsenal-transfer">Arsenal's £70m Guimaraes Move: The Catch Nobody's
+                    Reporting</a>
                 </h3>
-                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
-                  now • 5 min read</div>
+                <div class="u-card-meta text-[11px] text-slate-500 border-t border-slate-700/50 font-medium">Just now •
+                  7 min read</div>
               </div>
             </article>
 
@@ -617,38 +781,84 @@
                   class="absolute top-3 left-3 bg-red-600/90 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide z-10 border border-red-500">Injury
                   Alert</span>
                 <img src="/william-saliba-arsenal-injury.webp"
-                  alt="William Saliba during France World Cup match before Arsenal back injury confirmation"
-                  class="media-cover" width="640" height="360" loading="lazy" decoding="async">
+                  alt="William Saliba during France match before Arsenal back injury confirmation" class="media-cover"
+                  width="640" height="360" loading="lazy" decoding="async">
               </a>
               <div class="u-card-body">
-                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
+                <h3 class="u-card-title font-bold text-white font-oswald">
                   <a href="/william-saliba-arsenal-injury">Saliba's World Cup Warning Nobody Heeded</a>
                 </h3>
-                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
-                  now • 6 min read</div>
-              </div>
-            </article>
-
-            <article class="u-card bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-lg">
-              <a href="/elliot-anderson-man-city-transfer" class="u-card-media block">
-                <span
-                  class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-amber-500 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide z-10 border border-slate-700">Premier
-                  League</span>
-                <img src="/elliot-anderson-man-city-transfer.webp"
-                  alt="Elliot Anderson signs record Manchester City contract after Nottingham Forest exit"
-                  class="media-cover" width="640" height="360" loading="lazy" decoding="async">
-              </a>
-              <div class="u-card-body">
-                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
-                  <a href="/elliot-anderson-man-city-transfer">Man City Just Paid Record Money for Elliot Anderson</a>
-                </h3>
-                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
-                  now • 6 min read</div>
+                <div class="u-card-meta text-[11px] text-slate-500 border-t border-slate-700/50 font-medium">Just now •
+                  6 min read</div>
               </div>
             </article>
 
           </div>
         </div>
+
+        <!-- ══════════════════════════════════════════════════════════════════ -->
+        <!-- LATEST NEWS — overflow target for the hero. Any story pushed out of -->
+        <!-- the strict 1+2 hero belongs here. Newest first.                     -->
+        <!-- ══════════════════════════════════════════════════════════════════ -->
+        <section aria-labelledby="latest-heading" class="mt-10 reveal">
+          <div class="sec-head">
+            <h2 id="latest-heading"
+              class="font-oswald text-lg font-bold text-white uppercase tracking-wide section-bar">Latest News</h2>
+            <a href="/analysis"
+              class="text-[11px] font-bold uppercase tracking-widest text-amber-500 hover:text-amber-400 transition-colors shrink-0">More
+              Stories &rarr;</a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
+              <a href="/eli-junior-kroupi-barcelona-transfer" class="u-card-media block">
+                <span
+                  class="absolute top-3 left-3 z-10 bg-amber-500 text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide font-oswald">Transfers</span>
+                <img src="/eli-junior-kroupi-barcelona-transfer.webp" alt="Eli Junior Kroupi in Bournemouth kit amid Barcelona transfer interest" class="media-cover" width="640" height="360" loading="lazy"
+                  decoding="async">
+              </a>
+              <div class="u-card-body">
+                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
+                  <a href="/eli-junior-kroupi-barcelona-transfer">Barcelona's Alvarez Plan B Just Got Slammed Shut</a>
+                </h3>
+                <p class="text-[13px] text-slate-400 leading-relaxed line-clamp-2 mb-3">Five of Europe's biggest clubs want the same 20-year-old. Bournemouth's answer hasn't shifted an inch all summer.</p>
+                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
+                  now • 5 min read</div>
+              </div>
+            </article>
+            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
+              <a href="/elliot-anderson-man-city-transfer" class="u-card-media block">
+                <span
+                  class="absolute top-3 left-3 z-10 bg-slate-900/80 text-amber-500 border border-slate-700 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide font-oswald">Premier League</span>
+                <img src="/elliot-anderson-man-city-transfer.webp" alt="Elliot Anderson signs record Manchester City contract after Nottingham Forest exit" class="media-cover" width="640" height="360" loading="lazy"
+                  decoding="async">
+              </a>
+              <div class="u-card-body">
+                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
+                  <a href="/elliot-anderson-man-city-transfer">Man City Just Paid Record Money for Elliot Anderson</a>
+                </h3>
+                <p class="text-[13px] text-slate-400 leading-relaxed line-clamp-2 mb-3">Anderson ditched Nottingham Forest for a six-year deal worth British-record money. United got left at the altar.</p>
+                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
+                  now • 6 min read</div>
+              </div>
+            </article>
+            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
+              <a href="/premier-league-title-race-preview" class="u-card-media block">
+                <span
+                  class="absolute top-3 left-3 z-10 bg-emerald-600/90 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wide font-oswald">Analysis</span>
+                <img src="/premier-league-title-race-preview.webp" alt="Premier League title race preview with new managers and record signings" class="media-cover" width="640" height="360" loading="lazy"
+                  decoding="async">
+              </a>
+              <div class="u-card-body">
+                <h3 class="u-card-title font-bold text-white font-oswald mb-2">
+                  <a href="/premier-league-title-race-preview">Six Managers Changed. Only One Wins the League.</a>
+                </h3>
+                <p class="text-[13px] text-slate-400 leading-relaxed line-clamp-2 mb-3">Two British transfer records smashed in weeks, half the league with new bosses. So who actually wins it?</p>
+                <div class="u-card-meta text-[11px] text-slate-500 pt-2 border-t border-slate-700/50 font-medium">Just
+                  now • 9 min read</div>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <!-- ── SEASON RESTART STRIP ── -->
         <section aria-labelledby="season-heading"
@@ -693,51 +903,6 @@
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
-              <a href="/bruno-guimaraes-arsenal-transfer" class="u-card-media block">
-                <span
-                  class="absolute top-2.5 left-2.5 z-10 bg-slate-950/85 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider font-oswald border border-slate-700">Arsenal</span>
-                <span
-                  class="absolute top-2.5 right-2.5 z-10 bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider font-oswald">£70m</span>
-                <img src="/bruno-guimaraes-arsenal-transfer.webp" alt="Bruno Guimaraes amid Arsenal transfer talks" class="media-cover" width="480" height="270" loading="lazy"
-                  decoding="async">
-              </a>
-              <div class="u-card-body !p-3.5">
-                <h3 class="u-card-title font-bold text-white font-oswald">
-                  <a href="/bruno-guimaraes-arsenal-transfer">Guimaraes to Arsenal: Why No Bid Has Landed Yet</a>
-                </h3>
-              </div>
-            </article>
-            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
-              <a href="/eli-junior-kroupi-barcelona-transfer" class="u-card-media block">
-                <span
-                  class="absolute top-2.5 left-2.5 z-10 bg-slate-950/85 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider font-oswald border border-slate-700">Barcelona</span>
-                <span
-                  class="absolute top-2.5 right-2.5 z-10 bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider font-oswald">Rejected</span>
-                <img src="/eli-junior-kroupi-barcelona-transfer.webp" alt="Eli Junior Kroupi playing for Bournemouth" class="media-cover" width="480" height="270" loading="lazy"
-                  decoding="async">
-              </a>
-              <div class="u-card-body !p-3.5">
-                <h3 class="u-card-title font-bold text-white font-oswald">
-                  <a href="/eli-junior-kroupi-barcelona-transfer">Bournemouth Slam the Door on Kroupi Approach</a>
-                </h3>
-              </div>
-            </article>
-            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
-              <a href="/elliot-anderson-man-city-transfer" class="u-card-media block">
-                <span
-                  class="absolute top-2.5 left-2.5 z-10 bg-slate-950/85 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider font-oswald border border-slate-700">Man City</span>
-                <span
-                  class="absolute top-2.5 right-2.5 z-10 bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider font-oswald">£100m+</span>
-                <img src="/elliot-anderson-man-city-transfer.webp" alt="Elliot Anderson signing for Manchester City" class="media-cover" width="480" height="270" loading="lazy"
-                  decoding="async">
-              </a>
-              <div class="u-card-body !p-3.5">
-                <h3 class="u-card-title font-bold text-white font-oswald">
-                  <a href="/elliot-anderson-man-city-transfer">Anderson's Record Move: United Left at the Altar</a>
-                </h3>
-              </div>
-            </article>
-            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
               <a href="/nubel-transfer" class="u-card-media block">
                 <span
                   class="absolute top-2.5 left-2.5 z-10 bg-slate-950/85 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider font-oswald border border-slate-700">Bayern</span>
@@ -749,6 +914,51 @@
               <div class="u-card-body !p-3.5">
                 <h3 class="u-card-title font-bold text-white font-oswald">
                   <a href="/nubel-transfer">Bayern Cash In as the Goalkeeper Merry-Go-Round Spins</a>
+                </h3>
+              </div>
+            </article>
+            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
+              <a href="/alaba-transfer" class="u-card-media block">
+                <span
+                  class="absolute top-2.5 left-2.5 z-10 bg-slate-950/85 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider font-oswald border border-slate-700">Real Madrid</span>
+                <span
+                  class="absolute top-2.5 right-2.5 z-10 bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider font-oswald">Free</span>
+                <img src="/alaba-madrid.webp" alt="David Alaba leaving Real Madrid" class="media-cover" width="480" height="270" loading="lazy"
+                  decoding="async">
+              </a>
+              <div class="u-card-body !p-3.5">
+                <h3 class="u-card-title font-bold text-white font-oswald">
+                  <a href="/alaba-transfer">End of an Era: Alaba to Exit Real Madrid</a>
+                </h3>
+              </div>
+            </article>
+            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
+              <a href="/spalletti-juventus-transfers" class="u-card-media block">
+                <span
+                  class="absolute top-2.5 left-2.5 z-10 bg-slate-950/85 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider font-oswald border border-slate-700">Juventus</span>
+                <span
+                  class="absolute top-2.5 right-2.5 z-10 bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider font-oswald">Targets</span>
+                <img src="/Luciano-Spalletti-s.webp" alt="Luciano Spalletti planning Juventus transfers" class="media-cover" width="480" height="270" loading="lazy"
+                  decoding="async">
+              </a>
+              <div class="u-card-body !p-3.5">
+                <h3 class="u-card-title font-bold text-white font-oswald">
+                  <a href="/spalletti-juventus-transfers">Spalletti's Blueprint: Juve Boss Draws Up His List</a>
+                </h3>
+              </div>
+            </article>
+            <article class="u-card bg-slate-800/70 rounded-xl overflow-hidden border border-slate-700/70">
+              <a href="/braghin-juventus-exit" class="u-card-media block">
+                <span
+                  class="absolute top-2.5 left-2.5 z-10 bg-slate-950/85 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider font-oswald border border-slate-700">Juventus</span>
+                <span
+                  class="absolute top-2.5 right-2.5 z-10 bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider font-oswald">Departure</span>
+                <img src="/StefanoBraghinjv.webp" alt="Stefano Braghin leaving Juventus after 14 years" class="media-cover" width="480" height="270" loading="lazy"
+                  decoding="async">
+              </a>
+              <div class="u-card-body !p-3.5">
+                <h3 class="u-card-title font-bold text-white font-oswald">
+                  <a href="/braghin-juventus-exit">The Architect Departs After 14 Years at Juventus</a>
                 </h3>
               </div>
             </article>
