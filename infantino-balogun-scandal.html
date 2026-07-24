@@ -116,7 +116,7 @@
     <span class="bg-slate-900 text-amber-400 text-[10px] font-black tracking-widest uppercase px-3 h-full flex items-center shrink-0 font-oswald border-r border-amber-600">Breaking</span>
     <div class="flex-1 overflow-hidden">
       <div class="ticker-inner text-slate-900 text-xs font-semibold">
-        🚨 BREAKING WORLD CUP: USA 1-4 Belgium (FT) - Belgium cruise to Quarterfinals; Spain, England, France also advance!  •  UP NEXT TODAY: Argentina vs Egypt &amp; Switzerland vs Colombia  •  RECENT: Spain 1-0 Portugal | England 3-2 Mexico
+        🚨 BREAKING: William Saliba back injury confirmed — Arsenal sweat on defender's return  •  Bournemouth reject Barcelona approach for Eli Junior Kroupi  •  Arsenal preparing £70m offer for Bruno Guimaraes  •  Man City complete record £100m+ deal for Elliot Anderson  •  UP NEXT: Community Shield &amp; Premier League opener in August
       </div>
     </div>
   </div>
@@ -159,12 +159,12 @@
           </div>
           <div class="flex items-center gap-2">
             <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold mr-2">Share</span>
-            <button aria-label="Share on X" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-[#1DA1F2] hover:text-white text-slate-400 flex items-center justify-center transition-colors">
+            <a href="#" data-share="x" target="_blank" rel="noopener noreferrer" aria-label="Share on X" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-[#1DA1F2] hover:text-white text-slate-400 flex items-center justify-center transition-colors">
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </button>
-            <button aria-label="Share on Facebook" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-[#1877F2] hover:text-white text-slate-400 flex items-center justify-center transition-colors">
+            </a>
+            <a href="#" data-share="facebook" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-[#1877F2] hover:text-white text-slate-400 flex items-center justify-center transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.394.995-.394 1.724v1.5h3.817l-.506 3.667h-3.311v8.045z"/></svg>
-            </button>
+            </a>
           </div>
         </div>
       </header>
@@ -385,12 +385,47 @@
         </ul>
       </div>
     </div>
+    <div class="border-t border-slate-800/80 pt-6 pb-6">
+      <h3 class="font-oswald text-xs font-bold text-white uppercase tracking-widest mb-3">Official Sources</h3>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2">
+        <li><a href="https://www.premierleague.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Premier League (official)</a></li>
+        <li><a href="https://www.fifa.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">FIFA</a></li>
+        <li><a href="https://www.uefa.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">UEFA</a></li>
+        <li><a href="https://www.laliga.com/en-GB" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">LaLiga (official)</a></li>
+        <li><a href="https://www.transfermarkt.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Transfermarkt</a></li>
+        <li><a href="https://www.marca.com/en/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 hover:text-amber-400 transition-colors">Marca</a></li>
+      </ul>
+    </div>
     <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="text-xs text-slate-600">© 2026 Govolsgo. All rights reserved. For football fans, by football fans.</p>
-      <p class="text-xs text-slate-700">Live data powered by API-Football · Design: Govolsgo Studio</p>
+      <p class="text-xs text-slate-700">Fixtures &amp; standings verified against official competition sources · Design: Govolsgo Studio</p>
     </div>
   </div>
 </footer>
 
+  <!-- ─── SOCIAL SHARE (dynamic URL + title) ─── -->
+  <script>
+    (function () {
+      var targets = document.querySelectorAll('a[data-share]');
+      if (!targets.length) return;
+      var url = encodeURIComponent(window.location.href);
+      var title = encodeURIComponent(document.title);
+      targets.forEach(function (a) {
+        var net = a.getAttribute('data-share');
+        if (net === 'facebook') {
+          a.href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+        } else if (net === 'x') {
+          a.href = 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title;
+        } else {
+          return;
+        }
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.open(a.href, 'govolsgo-share-' + net,
+            'noopener,noreferrer,width=600,height=560,scrollbars=yes');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
